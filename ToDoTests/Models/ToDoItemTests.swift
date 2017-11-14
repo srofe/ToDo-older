@@ -37,5 +37,11 @@ class ToDoItemTests: XCTestCase {
         let item = ToDoItem(title: sutTitle, timestamp: 0.0)
         XCTAssertEqual(0.0, item.timestamp, "A ToDo shall set it's timestamp if it is provided in the initialiser.")
     }
+    
+    func testInitSetsLocationIfProvidedInInitialiser() {
+        let location = Location(name: "Location Name")
+        let item = ToDoItem(title: sutTitle, location: location)
+        XCTAssertEqual("Location Name", item.location?.name, "A ToDo shall set it's location if it is provided in the initialiser.")
+    }
 
 }
