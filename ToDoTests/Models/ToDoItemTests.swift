@@ -33,4 +33,9 @@ class ToDoItemTests: XCTestCase {
         XCTAssertEqual(sutDescription, item.description, "A ToDo shall set it's description if it is provided in the initialiser.")
     }
 
+    func testInitSetsTimestampIfProvidedInInitialiser() {
+        let item = ToDoItem(title: sutTitle, timestamp: 0.0)
+        XCTAssertEqual(0.0, item.timestamp, "A ToDo shall set it's timestamp if it is provided in the initialiser.")
+    }
+
 }
