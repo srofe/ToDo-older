@@ -10,7 +10,11 @@ import XCTest
 @testable import ToDo
 
 class ToDoItemTests: XCTestCase {
-    
+
+    // Test variables used in the TestCase
+    let sutTitle = "Item Title"
+    let sutDescription = "A description of the ToDo item"
+
     override func setUp() {
         super.setUp()
     }
@@ -20,13 +24,13 @@ class ToDoItemTests: XCTestCase {
     }
 
     func testInitSetsTitle() {
-        let item = ToDoItem(title: "Item Title")
-        XCTAssertEqual("Item Title", item.title, "A ToDo shall set it's title when initialised.")
+        let item = ToDoItem(title: sutTitle)
+        XCTAssertEqual(sutTitle, item.title, "A ToDo shall set it's title when initialised.")
     }
 
     func testInitSetsDescriptionIfProvidedInInitialiser() {
-        let item = ToDoItem(title: "Item Title", description: "A description of the ToDo item")
-        XCTAssertEqual("A description of the ToDo item", item.description, "A ToDo shall set it's description if it is provided in the initialiser.")
+        let item = ToDoItem(title: sutTitle, description: sutDescription)
+        XCTAssertEqual(sutDescription, item.description, "A ToDo shall set it's description if it is provided in the initialiser.")
     }
 
 }
