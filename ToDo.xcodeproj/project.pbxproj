@@ -100,9 +100,7 @@
 				F426034E1FBBA20B009179EA /* AppDelegate.swift */,
 				F42603501FBBA20B009179EA /* ViewController.swift */,
 				F42603521FBBA20B009179EA /* Main.storyboard */,
-				F42603551FBBA20B009179EA /* Assets.xcassets */,
-				F42603571FBBA20B009179EA /* LaunchScreen.storyboard */,
-				F426035A1FBBA20B009179EA /* Info.plist */,
+				F426037C1FBBA239009179EA /* SupportingFiles */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -123,6 +121,16 @@
 				F42603701FBBA20B009179EA /* Info.plist */,
 			);
 			path = ToDoUITests;
+			sourceTree = "<group>";
+		};
+		F426037C1FBBA239009179EA /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				F42603551FBBA20B009179EA /* Assets.xcassets */,
+				F42603571FBBA20B009179EA /* LaunchScreen.storyboard */,
+				F426035A1FBBA20B009179EA /* Info.plist */,
+			);
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SKJAJR837;
 				INFOPLIST_FILE = ToDo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.poddlybonk.ToDo;
@@ -441,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SKJAJR837;
 				INFOPLIST_FILE = ToDo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.poddlybonk.ToDo;
@@ -456,6 +466,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SKJAJR837;
 				INFOPLIST_FILE = ToDoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.poddlybonk.ToDoTests;
@@ -472,6 +483,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SKJAJR837;
 				INFOPLIST_FILE = ToDoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.poddlybonk.ToDoTests;
@@ -487,6 +499,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SKJAJR837;
 				INFOPLIST_FILE = ToDoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.poddlybonk.ToDoUITests;
@@ -502,6 +515,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4SKJAJR837;
 				INFOPLIST_FILE = ToDoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.poddlybonk.ToDoUITests;
