@@ -19,12 +19,14 @@ class ToDoItemTests: XCTestCase {
         super.tearDown()
     }
 
-    func testInitTakesTitle() {
+    func testInitSetsTitle() {
         let item = ToDoItem(title: "Item Title")
+        XCTAssertEqual("Item Title", item.title, "A ToDo shall set it's title when initialised.")
     }
 
-    func testInitTakesTitleAndDescription() {
-        let item = ToDoItem(title: "Item Title", description: "A descriptino of the ToDo item")
+    func testInitSetsDescriptionIfProvidedInInitialiser() {
+        let item = ToDoItem(title: "Item Title", description: "A description of the ToDo item")
+        XCTAssertEqual("A description of the ToDo item", item.description, "A ToDo shall set it's description if it is provided in the initialiser.")
     }
 
 }
