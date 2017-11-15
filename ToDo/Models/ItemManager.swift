@@ -22,6 +22,10 @@ class ItemManager {
         return toDoItems[index]
     }
 
+    func doneItem(at index: Int) -> ToDoItem {
+        return ToDoItem(title: "First Item")
+    }
+
     func checkItem(at index: Int) {
         toDoCount -= 1
         doneCount += 1

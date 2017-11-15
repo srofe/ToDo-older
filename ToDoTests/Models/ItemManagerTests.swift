@@ -66,4 +66,11 @@ class ItemManagerTests: XCTestCase {
         sut.checkItem(at: 0)
         XCTAssertEqual("Second Item", sut.item(at: 0).title, "An ItemManager shall remove a checked item from the collection of ToDo items.")
     }
+
+    func testDoneItemAtReturnsCheckedItem() {
+        sut.add(item: sutItem)
+        sut.checkItem(at: 0)
+        let doneItem = sut.doneItem(at: 0)
+        XCTAssertEqual(sutItem.title, doneItem.title, "An ItemManager shall enable done items to be returned.")
+    }
 }
