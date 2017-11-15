@@ -33,4 +33,9 @@ class ItemManagerTests: XCTestCase {
     func testDoneCountInitiallySetToZero() {
         XCTAssertEqual(0, sut.doneCount, "An ItemManager shall initialise the count of done items to zero.")
     }
+
+    func testAddItemIncreaseTodoCountByOne() {
+        sut.addItem(ToDoItem(title: ""))
+        XCTAssertEqual(1, sut.toDoCount, "An ItemManager shall increase the ToDo item count by one when an item is added.")
+    }
 }
