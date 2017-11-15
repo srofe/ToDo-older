@@ -20,6 +20,11 @@ class LocationTests: XCTestCase {
         super.tearDown()
     }
 
+    func testInitSetsName() {
+        let location = Location(name: "Location Name")
+        XCTAssertEqual("Location Name", location.name, "A Location shall set it's name when initialised.")
+    }
+
     func testInitSetsCoordinate() {
         let coordinate = CLLocationCoordinate2D(latitude: 1, longitude: 2)
         let location = Location(name: "Location Name", coordinate: coordinate)
