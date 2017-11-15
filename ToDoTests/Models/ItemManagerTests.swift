@@ -35,7 +35,13 @@ class ItemManagerTests: XCTestCase {
     }
 
     func testAddItemIncreaseTodoCountByOne() {
-        sut.addItem(ToDoItem(title: ""))
+        sut.add(item: ToDoItem(title: ""))
         XCTAssertEqual(1, sut.toDoCount, "An ItemManager shall increase the ToDo item count by one when an item is added.")
+    }
+
+    func testItemAtReturnsItemAdded() {
+        sut.add(item: ToDoItem(title: "Item Name"))
+        let item = sut.item(at: 0)
+        XCTAssertEqual("Item Name", item.title, "An ItemManager item(at:) shall return the item added.")
     }
 }
