@@ -42,6 +42,18 @@ class ItemManagerTests: XCTestCase {
     func testItemAtReturnsItemAdded() {
         sut.add(item: ToDoItem(title: "Item Name"))
         let item = sut.item(at: 0)
-        XCTAssertEqual("Item Name", item.title, "An ItemManager item(at:) shall return the item added.")
+        XCTAssertEqual("Item Name", item.title, "An ItemManager shall enable an item added to be returned.")
+    }
+
+    func testCheckItemDecrementsToDoCount() {
+        sut.add(item: ToDoItem(title: "Item Name"))
+        sut.checkItem(at: 0)
+        XCTAssertEqual(0, sut.toDoCount, "An ItemManager shall decrement the ToDo item count by one when an item is checked.")
+    }
+
+    func testCheckItemIncrementsDoneCount() {
+        sut.add(item: ToDoItem(title: "Item Title"))
+        sut.checkItem(at: 0)
+        XCTAssertEqual(1, sut.doneCount, "An ItemManager shall increment the done count by one when an item is checked.")
     }
 }
