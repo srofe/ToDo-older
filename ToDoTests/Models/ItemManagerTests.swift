@@ -25,4 +25,9 @@ class ItemManagerTests: XCTestCase {
         let sut = ItemManager()
         XCTAssertEqual(0, sut.toDoCount, "An ItemManger shall initialise the count of ToDo items to zero.")
     }
+    
+    func testDoneCountInitiallySetToZero() {
+        let sut = ItemManager()
+        XCTAssertEqual(0, sut.doneCount, "An ItemManager shall initialise the count of done items to zero.")
+    }
 }
