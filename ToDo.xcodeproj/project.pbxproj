@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F426034F1FBBA20B009179EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426034E1FBBA20B009179EA /* AppDelegate.swift */; };
-		F42603511FBBA20B009179EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42603501FBBA20B009179EA /* ViewController.swift */; };
 		F42603541FBBA20B009179EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F42603521FBBA20B009179EA /* Main.storyboard */; };
 		F42603561FBBA20B009179EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F42603551FBBA20B009179EA /* Assets.xcassets */; };
 		F42603591FBBA20B009179EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F42603571FBBA20B009179EA /* LaunchScreen.storyboard */; };
@@ -19,6 +18,9 @@
 		F426038A1FBBAF43009179EA /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42603891FBBAF43009179EA /* LocationTests.swift */; };
 		F457335A1FBBD5C400161F62 /* ItemManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733591FBBD5C400161F62 /* ItemManagerTests.swift */; };
 		F457335C1FBCE2AB00161F62 /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F457335B1FBCE2AB00161F62 /* ItemManager.swift */; };
+		F45733611FBD70A100161F62 /* ItemListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733601FBD70A100161F62 /* ItemListViewControllerTests.swift */; };
+		F45733641FBD721700161F62 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733631FBD721700161F62 /* ItemListViewController.swift */; };
+		F45733671FBD786E00161F62 /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733661FBD786E00161F62 /* ItemListDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +43,6 @@
 /* Begin PBXFileReference section */
 		F426034B1FBBA20B009179EA /* ToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F426034E1FBBA20B009179EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F42603501FBBA20B009179EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F42603531FBBA20B009179EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F42603551FBBA20B009179EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F42603581FBBA20B009179EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +58,9 @@
 		F42603891FBBAF43009179EA /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		F45733591FBBD5C400161F62 /* ItemManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManagerTests.swift; sourceTree = "<group>"; };
 		F457335B1FBCE2AB00161F62 /* ItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
+		F45733601FBD70A100161F62 /* ItemListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewControllerTests.swift; sourceTree = "<group>"; };
+		F45733631FBD721700161F62 /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
+		F45733661FBD786E00161F62 /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +111,9 @@
 		F426034D1FBBA20B009179EA /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
-				F426034E1FBBA20B009179EA /* AppDelegate.swift */,
-				F42603501FBBA20B009179EA /* ViewController.swift */,
 				F42603521FBBA20B009179EA /* Main.storyboard */,
+				F426034E1FBBA20B009179EA /* AppDelegate.swift */,
+				F45733651FBD721D00161F62 /* Controllers */,
 				F42603861FBBA4A0009179EA /* Models */,
 				F426037C1FBBA239009179EA /* SupportingFiles */,
 			);
@@ -119,6 +123,7 @@
 		F42603621FBBA20B009179EA /* ToDoTests */ = {
 			isa = PBXGroup;
 			children = (
+				F45733621FBD70A800161F62 /* Controllers */,
 				F426037F1FBBA382009179EA /* Models */,
 				F42603651FBBA20B009179EA /* Info.plist */,
 			);
@@ -162,6 +167,23 @@
 				F42603841FBBA490009179EA /* ToDoItem.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F45733621FBD70A800161F62 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F45733601FBD70A100161F62 /* ItemListViewControllerTests.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F45733651FBD721D00161F62 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F45733631FBD721700161F62 /* ItemListViewController.swift */,
+				F45733661FBD786E00161F62 /* ItemListDataProvider.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,11 +320,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F42603511FBBA20B009179EA /* ViewController.swift in Sources */,
 				F457335C1FBCE2AB00161F62 /* ItemManager.swift in Sources */,
+				F45733671FBD786E00161F62 /* ItemListDataProvider.swift in Sources */,
 				F426034F1FBBA20B009179EA /* AppDelegate.swift in Sources */,
 				F42603881FBBAD2F009179EA /* Location.swift in Sources */,
 				F42603851FBBA490009179EA /* ToDoItem.swift in Sources */,
+				F45733641FBD721700161F62 /* ItemListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +336,7 @@
 				F457335A1FBBD5C400161F62 /* ItemManagerTests.swift in Sources */,
 				F426038A1FBBAF43009179EA /* LocationTests.swift in Sources */,
 				F426037E1FBBA374009179EA /* ToDoItemTests.swift in Sources */,
+				F45733611FBD70A100161F62 /* ItemListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
