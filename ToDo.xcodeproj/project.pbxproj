@@ -20,6 +20,7 @@
 		F457335C1FBCE2AB00161F62 /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F457335B1FBCE2AB00161F62 /* ItemManager.swift */; };
 		F45733611FBD70A100161F62 /* ItemListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733601FBD70A100161F62 /* ItemListViewControllerTests.swift */; };
 		F45733641FBD721700161F62 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733631FBD721700161F62 /* ItemListViewController.swift */; };
+		F45733671FBD786E00161F62 /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733661FBD786E00161F62 /* ItemListDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		F457335B1FBCE2AB00161F62 /* ItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
 		F45733601FBD70A100161F62 /* ItemListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewControllerTests.swift; sourceTree = "<group>"; };
 		F45733631FBD721700161F62 /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
+		F45733661FBD786E00161F62 /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				F45733631FBD721700161F62 /* ItemListViewController.swift */,
+				F45733661FBD786E00161F62 /* ItemListDataProvider.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F457335C1FBCE2AB00161F62 /* ItemManager.swift in Sources */,
+				F45733671FBD786E00161F62 /* ItemListDataProvider.swift in Sources */,
 				F426034F1FBBA20B009179EA /* AppDelegate.swift in Sources */,
 				F42603881FBBAD2F009179EA /* Location.swift in Sources */,
 				F42603851FBBA490009179EA /* ToDoItem.swift in Sources */,
