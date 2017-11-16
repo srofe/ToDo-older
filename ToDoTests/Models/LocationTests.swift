@@ -33,4 +33,17 @@ class LocationTests: XCTestCase {
 
     }
 
+    func testEqualLocationsAreEqual() {
+        let firstLocation = Location(name: "Location Name")
+        let secondLocation = Location(name: "Location Name")
+        XCTAssertEqual(firstLocation, secondLocation, "A Location shall implement equatable.")
+    }
+
+    func testLocationsNotEqualWhenLatitutesAreDifferent() {
+        let firstCoordinate = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+        let secondCoordinate = CLLocationCoordinate2D(latitude: 1.0, longitude: 0.0)
+        let firstLocation = Location(name: "", coordinate: firstCoordinate)
+        let secondLocation = Location(name: "", coordinate: secondCoordinate)
+        XCTAssertNotEqual(firstLocation, secondLocation, "A Location shall not be equal to another location which has a different latitude.")
+    }
 }
