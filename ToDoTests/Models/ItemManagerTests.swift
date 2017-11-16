@@ -91,4 +91,35 @@ class ItemManagerTests: XCTestCase {
         sut.removeAllItems()
         XCTAssertEqual(0, sut.doneCount, "An ItemManager shall have a Done count of zero when all items have been removed.")
     }
+
+    func testAddingAnExistingItemDoesNotIncreaseTheToDoCount() {
+        sut.add(item: sutItem)
+        XCTAssertEqual(1, sut.toDoCount)
+        sut.add(item: sutItem)
+        XCTAssertEqual(1, sut.toDoCount, "An ItemManager shall not enable an existing item to be added - toDoCount.")
+    }
+
+    func testAddingAnExistingItemDoesNotIncreaseTheDoneCount() {
+        sut.add(item: sutItem)
+        sut.add(item: sutItem)
+        XCTAssertEqual(0, sut.doneCount, "An ItemManager shall not enable an existing item to be added - doneCount.")
+    }
+
+    func testAddingAnExistingItemDoesNotIncreaseTheTodoCountWhenItemChecked() {
+        sut.add(item: sutItem)
+        XCTAssertEqual(1, sut.toDoCount)
+        sut.checkItem(at: 0)
+        XCTAssertEqual(1, sut.doneCount)
+        sut.add(item: sutItem)
+        XCTAssertEqual(0, sut.toDoCount, "An ItemManager shall not enable an existing item to be added - toDoCount after checking item.")
+    }
+
+    func testAddingAnExistingItemDoesNotIncreaseTheDoneCountWhenItemChecked() {
+        sut.add(item: sutItem)
+        XCTAssertEqual(1, sut.toDoCount)
+        sut.checkItem(at: 0)
+        XCTAssertEqual(1, sut.doneCount)
+        sut.add(item: sutItem)
+        XCTAssertEqual(1, sut.doneCount, "An ItemManager shall not enable an existing item to be added - doneCount after checking item.")
+    }
 }
