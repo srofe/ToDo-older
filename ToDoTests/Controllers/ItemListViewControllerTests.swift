@@ -20,7 +20,9 @@ class ItemListViewControllerTests: XCTestCase {
     }
 
     func testTableViewNotNilAfterLoading() {
-        let sut = ItemListViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ItemListViewController")
+        let sut = viewController as! ItemListViewController
         sut.loadViewIfNeeded()
         XCTAssertNotNil(sut.tableView, "An ItemListViewController shall have a table view after loading.")
     }
