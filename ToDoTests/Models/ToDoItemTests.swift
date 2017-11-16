@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreLocation
 @testable import ToDo
 
 class ToDoItemTests: XCTestCase {
@@ -84,5 +85,11 @@ class ToDoItemTests: XCTestCase {
         let firstItem = ToDoItem(title: sutTitle)
         let secondItem = ToDoItem(title: "Different title")
         XCTAssertNotEqual(firstItem, secondItem, "A ToDo item shall not be equal to aonterh item with a different title.")
+    }
+
+    func testItemsEqualWithAllParametersSet() {
+        let firstItem = ToDoItem(title: sutTitle, description: "Item description", timestamp: 2.5, location: Location(name: "Location Name", coordinate: CLLocationCoordinate2D(latitude: 1.5, longitude: 3.5)))
+        let secondItem = ToDoItem(title: sutTitle, description: "Item description", timestamp: 2.5, location: Location(name: "Location Name", coordinate: CLLocationCoordinate2D(latitude: 1.5, longitude: 3.5)))
+        XCTAssertEqual(firstItem, secondItem, "A ToDo item shall be equal to another ToDo item which has the same parameters.")
     }
 }
