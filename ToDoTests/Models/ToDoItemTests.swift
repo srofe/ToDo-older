@@ -67,4 +67,10 @@ class ToDoItemTests: XCTestCase {
         let secondItem = ToDoItem(title: sutTitle, location: Location(name: "First Location"))
         XCTAssertNotEqual(firstItem, secondItem, "A ToDo item, which has no location, shall not be equal to another ToDo item which does have a location.")
     }
+
+    func testItemsAreNotEqualWhenTimestampsNotEqual() {
+        let firstItem = ToDoItem(title: sutTitle, timestamp: 1.0)
+        let secondItem = ToDoItem(title: sutTitle, timestamp: 0.0)
+        XCTAssertNotEqual(firstItem, secondItem, "A ToDo item shall not be equal to another item with a different timestamp.")
+    }
 }
