@@ -50,4 +50,9 @@ class ToDoItemTests: XCTestCase {
         XCTAssertEqual(firstItem, secondItem, "A ToDo item shall implement equatable.")
     }
 
+    func testItemsWithDifferentLocationAreNotEqual() {
+        let firstItem = ToDoItem(title: sutTitle, location: Location(name: "First Location"))
+        let secondItem = ToDoItem(title: sutTitle, location: Location(name: "Second Location"))
+        XCTAssertNotEqual(firstItem, secondItem, "A ToDo item shall not be equal to another ToDo item which has a different location.")
+    }
 }
