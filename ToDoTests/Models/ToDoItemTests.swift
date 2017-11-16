@@ -44,4 +44,10 @@ class ToDoItemTests: XCTestCase {
         XCTAssertEqual("Location Name", item.location?.name, "A ToDo shall set it's location if it is provided in the initialiser.")
     }
 
+    func testEqualItemsAreEquatable() {
+        let firstItem = ToDoItem(title: sutTitle)
+        let secondItem = ToDoItem(title: sutTitle)
+        XCTAssertEqual(firstItem, secondItem, "A ToDo item shall implement equatable.")
+    }
+
 }
