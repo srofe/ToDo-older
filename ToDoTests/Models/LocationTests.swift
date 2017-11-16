@@ -46,4 +46,12 @@ class LocationTests: XCTestCase {
         let secondLocation = Location(name: "", coordinate: secondCoordinate)
         XCTAssertNotEqual(firstLocation, secondLocation, "A Location shall not be equal to another location which has a different latitude.")
     }
+
+    func testLocationsNotEqualWhenLongitudesAreDifferent() {
+        let firstCoordinate = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+        let secondCoordinate = CLLocationCoordinate2D(latitude: 0.0, longitude: 1.0)
+        let firstLocation = Location(name: "", coordinate: firstCoordinate)
+        let secondLocation = Location(name: "", coordinate: secondCoordinate)
+        XCTAssertNotEqual(firstLocation, secondLocation, "A Location shall not be equal to another location which has a different longitude.")
+    }
 }
