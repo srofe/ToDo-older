@@ -55,4 +55,16 @@ class ToDoItemTests: XCTestCase {
         let secondItem = ToDoItem(title: sutTitle, location: Location(name: "Second Location"))
         XCTAssertNotEqual(firstItem, secondItem, "A ToDo item shall not be equal to another ToDo item which has a different location.")
     }
+
+    func testItemsAreNotEqualWhenOnlyOneHasALocationFirstWithLocation() {
+        let firstItem = ToDoItem(title: sutTitle, location: Location(name: "First Location"))
+        let secondItem = ToDoItem(title: sutTitle)
+        XCTAssertNotEqual(firstItem, secondItem, "A ToDo item, which has a location, shall not be equal to another ToDo item which has no location.")
+    }
+
+    func testItemsAreNotEqualWhenOnlyOneHasALocationSecondWithLocation() {
+        let firstItem = ToDoItem(title: sutTitle)
+        let secondItem = ToDoItem(title: sutTitle, location: Location(name: "First Location"))
+        XCTAssertNotEqual(firstItem, secondItem, "A ToDo item, which has no location, shall not be equal to another ToDo item which does have a location.")
+    }
 }
