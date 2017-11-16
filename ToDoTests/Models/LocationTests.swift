@@ -39,18 +39,26 @@ class LocationTests: XCTestCase {
         XCTAssertEqual(firstLocation, secondLocation, "A Location shall implement equatable.")
     }
 
-    func testLocationsNotEqualWhenLatitutesAreDifferent() {
-        assertLocationNotEqualWith(firstName: "", firstLatlong: (0.0, 0.0), secondName: "", secondLatlong: (1.0, 0.0), message: "A Location shall not be equal to another location which has a different latitude.")
+    func testLocationsNotEqualWhenLatitutesAreNotEqual() {
+        assertLocationNotEqualWith(firstName: "", firstLatlong: (0.0, 0.0), secondName: "", secondLatlong: (1.0, 0.0), "A Location shall not be equal to another location which has a different latitude.")
     }
 
-    func testLocationsNotEqualWhenLongitudesAreDifferent() {
-        assertLocationNotEqualWith(firstName: "", firstLatlong: (0.0, 0.0), secondName: "", secondLatlong: (0.0, 1.0), message: "A Location shall not be equal to another location which has a different longitude.")
+    func testLocationsNotEqualWhenLongitudesAreNotEqual() {
+        assertLocationNotEqualWith(firstName: "", firstLatlong: (0.0, 0.0), secondName: "", secondLatlong: (0.0, 1.0), "A Location shall not be equal to another location which has a different longitude.")
+    }
+
+    func testLocationsWhenOnlyOneHasACoordinateAreNotEqual() {
+        assertLocationNotEqualWith(firstName: "", firstLatlong: (0.0, 0.0), secondName: "", secondLatlong: nil, "A Location, which has a coordinate, shall not be equal to another location which does not have a coordinate.")
+    }
+
+    func testLocationWhenNamesAreDifferentAreNoteEqual() {
+        assertLocationNotEqualWith(firstName: "Location Name", firstLatlong: nil, secondName: "Different Name", secondLatlong: nil)
     }
 }
 
 extension XCTestCase {
     func assertLocationNotEqualWith(firstName: String, firstLatlong: (Double, Double)?,
-                                    secondName: String, secondLatlong: (Double, Double)?, message: String = "", file: StaticString = #file, line: UInt = #line) {
+                                    secondName: String, secondLatlong: (Double, Double)?, _ message: String = "", file: StaticString = #file, line: UInt = #line) {
         var firstCoordinate: CLLocationCoordinate2D? = nil
         var secondCoordinate: CLLocationCoordinate2D? = nil
 
