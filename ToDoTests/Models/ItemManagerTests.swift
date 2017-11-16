@@ -74,4 +74,11 @@ class ItemManagerTests: XCTestCase {
         let doneItem = sut.doneItem(at: 0)
         XCTAssertEqual(sutItem, doneItem, "An ItemManager shall enable done items to be returned.")
     }
+
+    func testRemoveAllItemsResultsInZeroToDoCount() {
+        sut.add(item: sutItem)
+        sut.add(item: ToDoItem(title: "Another Item"))
+        sut.removeAllItems()
+        XCTAssertEqual(0, sut.toDoCount, "An ItemManager shall have a ToDo item count of zero when all items have been removed.")
+    }
 }

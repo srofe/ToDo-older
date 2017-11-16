@@ -30,4 +30,8 @@ class ItemManager {
         let item = toDoItems.remove(at: index)
         doneItems.append(item)
     }
+
+    func removeAllItems() {
+        toDoItems.removeAll()
+    }
 }
