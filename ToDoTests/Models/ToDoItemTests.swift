@@ -73,4 +73,16 @@ class ToDoItemTests: XCTestCase {
         let secondItem = ToDoItem(title: sutTitle, timestamp: 0.0)
         XCTAssertNotEqual(firstItem, secondItem, "A ToDo item shall not be equal to another item with a different timestamp.")
     }
+
+    func testItemsAreNotEqualWhenDescriptionsNotEqual() {
+        let firstItem = ToDoItem(title: sutTitle, description: "First description")
+        let secondItem = ToDoItem(title: sutTitle, description: "Second description")
+        XCTAssertNotEqual(firstItem, secondItem, "A ToDo item shall not be equal to another item with a different description.")
+    }
+
+    func testItemsAreNotEqualWhenTitlesNotEqual() {
+        let firstItem = ToDoItem(title: sutTitle)
+        let secondItem = ToDoItem(title: "Different title")
+        XCTAssertNotEqual(firstItem, secondItem, "A ToDo item shall not be equal to aonterh item with a different title.")
+    }
 }

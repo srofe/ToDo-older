@@ -22,7 +22,9 @@ struct ToDoItem: Equatable {
     }
 
     static func ==(lhs: ToDoItem, rhs: ToDoItem) -> Bool {
-        return lhs.timestamp == rhs.timestamp &&
+        return lhs.title == rhs.title &&
+            lhs.description == rhs.description &&
+            lhs.timestamp == rhs.timestamp &&
             lhs.location == rhs.location
     }
 }
