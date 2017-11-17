@@ -11,32 +11,38 @@ import XCTest
 
 class ItemListDataProviderTests: XCTestCase {
 
+    // The System Under Test.
+    var sut: ItemListDataProvider!
+
+    // Variables used in this test class.
+    var sutTableView: UITableView!
+
     override func setUp() {
+        sut = ItemListDataProvider()
+        sutTableView = UITableView()
+        sutTableView.dataSource = sut
+
         super.setUp()
     }
 
     override func tearDown() {
+        sut = nil
+        sutTableView = nil
+
         super.tearDown()
     }
 
     func testNumberOfSectionsIsTwo() {
-        let sut = ItemListDataProvider()
-        let tableView = UITableView()
-        tableView.dataSource = sut
-        XCTAssertEqual(2, tableView.numberOfSections, "An ItemListDataProvider shall ensure the number of sections in the table view is 2.")
+        XCTAssertEqual(2, sutTableView.numberOfSections, "An ItemListDataProvider shall ensure the number of sections in the table view is 2.")
     }
 
     func testNumbrerOfRowsInFirstSectionIsTodoCount() {
-        let sut = ItemListDataProvider()
-        let tableView = UITableView()
-        tableView.dataSource = sut
         sut.itemManager = ItemManager()
-
         sut.itemManager?.add(item: ToDoItem(title: "First Item"))
-        XCTAssertEqual(1, tableView.numberOfRows(inSection: 0))
+        XCTAssertEqual(1, sutTableView.numberOfRows(inSection: 0))
         sut.itemManager?.add(item: ToDoItem(title: "Second Item"))
-        tableView.reloadData()
+        sutTableView.reloadData()
 
-        XCTAssertEqual(sut.itemManager?.toDoCount, tableView.numberOfRows(inSection: 0), "An ItemListDataProvider shall set the number of rows in the first section to the number of ToDo items.")
+        XCTAssertEqual(sut.itemManager?.toDoCount, sutTableView.numberOfRows(inSection: 0), "An ItemListDataProvider shall set the number of rows in the first section to the number of ToDo items.")
     }
 }
