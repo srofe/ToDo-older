@@ -25,4 +25,16 @@ class ItemListDataProviderTests: XCTestCase {
         tableView.dataSource = sut
         XCTAssertEqual(2, tableView.numberOfSections, "An ItemListDataProvider shall ensure the number of sections in the table view is 2.")
     }
+
+    func testNumbrerOfRowsInFirstSectionIsTodoCount() {
+        let sut = ItemListDataProvider()
+        let tableView = UITableView()
+        tableView.dataSource = sut
+        sut.itemManager = ItemManager()
+
+        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        sut.itemManager?.add(item: ToDoItem(title: "Second Item"))
+
+        XCTAssertEqual(sut.itemManager?.toDoCount, tableView.numberOfRows(inSection: 0), "An ItemListDataProvider shall set the number of rows in the first section to the number of ToDo items.")
+    }
 }
