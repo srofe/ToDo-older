@@ -18,4 +18,11 @@ class ItemListDataProviderTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
+
+    func testNumberOfSectionsIsTwo() {
+        let sut = ItemListDataProvider()
+        let tableView = UITableView()
+        tableView.dataSource = sut
+        XCTAssertEqual(2, tableView.numberOfSections, "An ItemListDataProvider shall ensure the number of sections in the table view is 2.")
+    }
 }
