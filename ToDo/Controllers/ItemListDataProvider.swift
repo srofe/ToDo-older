@@ -8,18 +8,24 @@
 
 import UIKit
 
+enum Section: Int {
+    case toDo
+    case done
+}
+
 class ItemListDataProvider: NSObject, UITableViewDataSource {
 
     var itemManager: ItemManager?
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return itemManager?.toDoCount ?? 0
-        case 1:
-            return itemManager?.doneCount ?? 0
-        default:
-            return 0
+        guard let itemManager = itemManager else { return 0 }
+        guard let itemSection = Section(rawValue: section) else { fatalError() }
+
+        switch itemSection {
+        case .toDo:
+            return itemManager.toDoCount
+        case .done:
+            return itemManager.doneCount
         }
     }
 
