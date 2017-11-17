@@ -13,7 +13,14 @@ class ItemListDataProvider: NSObject, UITableViewDataSource {
     var itemManager: ItemManager?
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemManager?.toDoCount ?? 0
+        switch section {
+        case 0:
+            return itemManager?.toDoCount ?? 0
+        case 1:
+            return itemManager?.doneCount ?? 0
+        default:
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
