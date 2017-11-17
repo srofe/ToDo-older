@@ -33,7 +33,9 @@ class ItemListDataProviderTests: XCTestCase {
         sut.itemManager = ItemManager()
 
         sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        XCTAssertEqual(1, tableView.numberOfRows(inSection: 0))
         sut.itemManager?.add(item: ToDoItem(title: "Second Item"))
+        tableView.reloadData()
 
         XCTAssertEqual(sut.itemManager?.toDoCount, tableView.numberOfRows(inSection: 0), "An ItemListDataProvider shall set the number of rows in the first section to the number of ToDo items.")
     }
