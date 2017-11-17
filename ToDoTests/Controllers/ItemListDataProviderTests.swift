@@ -21,6 +21,7 @@ class ItemListDataProviderTests: XCTestCase {
         sut = ItemListDataProvider()
         sutTableView = UITableView()
         sutTableView.dataSource = sut
+        sut.itemManager = ItemManager()
 
         super.setUp()
     }
@@ -37,7 +38,6 @@ class ItemListDataProviderTests: XCTestCase {
     }
 
     func testNumbrerOfRowsInFirstSectionIsTodoCount() {
-        sut.itemManager = ItemManager()
         sut.itemManager?.add(item: ToDoItem(title: "First Item"))
         XCTAssertEqual(1, sutTableView.numberOfRows(inSection: 0))
         sut.itemManager?.add(item: ToDoItem(title: "Second Item"))
@@ -47,7 +47,6 @@ class ItemListDataProviderTests: XCTestCase {
     }
 
     func testNumberOfRowsIntSecondSectionIsDoneCount() {
-        sut.itemManager = ItemManager()
         sut.itemManager?.add(item: ToDoItem(title: "First Item"))
         sut.itemManager?.add(item: ToDoItem(title: "Second Item"))
         sut.itemManager?.checkItem(at: 0)
@@ -56,5 +55,12 @@ class ItemListDataProviderTests: XCTestCase {
         sutTableView.reloadData()
 
         XCTAssertEqual(sut.itemManager?.doneCount, sutTableView.numberOfRows(inSection: 1), "An ItemListDataProvider shall set the number of rows in the second secton to the number of Done items.")
+    }
+
+    func testCellForRowReturnsItemCell() {
+        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        sutTableView.reloadData()
+        let cell = sutTableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        XCTAssertTrue(cell is ItemCell, "An ItemListDataProvider shall provide access to cells at a valid row and index.")
     }
 }
