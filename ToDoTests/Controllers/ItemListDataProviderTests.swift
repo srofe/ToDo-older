@@ -63,4 +63,28 @@ class ItemListDataProviderTests: XCTestCase {
         let cell = sutTableView.cellForRow(at: IndexPath(row: 0, section: 0))
         XCTAssertTrue(cell is ItemCell, "An ItemListDataProvider shall provide access to cells at a valid row and index.")
     }
+
+    func testCellForRowDequeuesCellFromTableView() {
+        let mockTableView = MockTableView()
+        mockTableView.dataSource = sut
+        mockTableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
+        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        mockTableView.reloadData()
+        _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        XCTAssertTrue(mockTableView.cellGotDequeued, "An ItemListDatProvider shall deque cells from the table view.")
+    }
+}
+
+extension ItemListDataProviderTests {
+
+    class MockTableView: UITableView {
+        var cellGotDequeued = false
+
+        override func dequeueReusableCell(withIdentifier identifier: String, for indexPath: IndexPath) -> UITableViewCell {
+            cellGotDequeued = true
+
+            return super.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        }
+    }
+
 }
