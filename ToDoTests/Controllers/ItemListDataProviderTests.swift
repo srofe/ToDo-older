@@ -91,7 +91,19 @@ class ItemListDataProviderTests: XCTestCase {
         sut.itemManager?.add(item: sutFirstItem)
         mockTableView.reloadData()
         let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
-        XCTAssertEqual(sutFirstItem, cell.cachedItem, "An ItemManager shall set the item for a cell when callint the cellforRowAt() method.")
+        XCTAssertEqual(sutFirstItem, cell.cachedItem, "An ItemManager shall set the item for a cell when calling the cellforRowAt() method.")
+    }
+
+    func testCellForRowSection2CallsConfigCellWithDoneItem() {
+        let mockTableView = MockTableView(frame: CGRect(x: 0, y:0, width: 320, height:480), style: .plain)
+        mockTableView.dataSource = sut
+        mockTableView.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
+        sut.itemManager?.add(item: sutFirstItem)
+        sut.itemManager?.add(item: sutSecondItem)
+        sut.itemManager?.checkItem(at: 1)
+        mockTableView.reloadData()
+        let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! MockItemCell
+        XCTAssertEqual(sutSecondItem, cell.cachedItem, "An ItemManager shall set the item for a cell with calling cellForRowAt() method for section 2.")
     }
 }
 
