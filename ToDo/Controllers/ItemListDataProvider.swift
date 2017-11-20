@@ -13,9 +13,11 @@ enum Section: Int {
     case done
 }
 
-class ItemListDataProvider: NSObject, UITableViewDataSource {
+class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     var itemManager: ItemManager?
+
+    // MARK:- UITableViewDataSource compliance
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let itemManager = itemManager else { return 0 }
@@ -49,5 +51,11 @@ class ItemListDataProvider: NSObject, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
+    }
+
+    // MARK:- UITableViewDelegate compliance
+
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Check"
     }
 }

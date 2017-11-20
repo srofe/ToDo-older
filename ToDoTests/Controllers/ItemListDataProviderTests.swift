@@ -28,6 +28,7 @@ class ItemListDataProviderTests: XCTestCase {
         sutItemListViewController.loadViewIfNeeded()
         sutTableView = sutItemListViewController.tableView
         sutTableView.dataSource = sut
+        sutTableView.delegate = sut
         sutFirstItem = ToDoItem(title: "First Item")
         sutSecondItem = ToDoItem(title: "Second Item")
 
@@ -79,7 +80,7 @@ class ItemListDataProviderTests: XCTestCase {
         sut.itemManager?.add(item: sutFirstItem)
         mockTableView.reloadData()
         _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
-        XCTAssertTrue(mockTableView.cellGotDequeued, "An ItemListDatProvider shall deque cells from the table view.")
+        XCTAssertTrue(mockTableView.cellGotDequeued, "An ItemListDataProvider shall deque cells from the table view.")
     }
 
     func testCellForRowCallsConfigCell() {
@@ -87,7 +88,7 @@ class ItemListDataProviderTests: XCTestCase {
         sut.itemManager?.add(item: sutFirstItem)
         mockTableView.reloadData()
         let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
-        XCTAssertEqual(sutFirstItem, cell.cachedItem, "An ItemManager shall set the item for a cell when calling the cellforRowAt() method.")
+        XCTAssertEqual(sutFirstItem, cell.cachedItem, "An ItemListDataProvider shall set the item for a cell when calling the cellforRowAt() method.")
     }
 
     func testCellForRowSection2CallsConfigCellWithDoneItem() {
@@ -97,7 +98,12 @@ class ItemListDataProviderTests: XCTestCase {
         sut.itemManager?.checkItem(at: 1)
         mockTableView.reloadData()
         let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 1)) as! MockItemCell
-        XCTAssertEqual(sutSecondItem, cell.cachedItem, "An ItemManager shall set the item for a cell with calling cellForRowAt() method for section 2.")
+        XCTAssertEqual(sutSecondItem, cell.cachedItem, "An ItemListDataProvider shall set the item for a cell with calling cellForRowAt() method for section 2.")
+    }
+
+    func testDeleteButtonInFirstSectionShowsTitleCheck() {
+        let deleteButtonTitle = sutTableView.delegate?.tableView?(sutTableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertEqual("Check", deleteButtonTitle, "An ItemListDataProvider shall set the title ot the delete button to 'Check' when a ToDo item is swiped.")
     }
 }
 
