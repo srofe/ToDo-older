@@ -16,12 +16,16 @@ class ItemListDataProviderTests: XCTestCase {
 
     // Variables used in this test class.
     var sutTableView: UITableView!
+    var sutItemListViewController: ItemListViewController!
 
     override func setUp() {
         sut = ItemListDataProvider()
-        sutTableView = UITableView()
-        sutTableView.dataSource = sut
         sut.itemManager = ItemManager()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        sutItemListViewController = storyboard.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController
+        sutItemListViewController.loadViewIfNeeded()
+        sutTableView = sutItemListViewController.tableView
+        sutTableView.dataSource = sut
 
         super.setUp()
     }
