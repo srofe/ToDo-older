@@ -77,6 +77,16 @@ class ItemListDataProviderTests: XCTestCase {
         _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
         XCTAssertTrue(mockTableView.cellGotDequeued, "An ItemListDatProvider shall deque cells from the table view.")
     }
+
+    func testCellForRowCallsConfigCell() {
+        let mockTableView = MockTableView()
+        mockTableView.dataSource = sut
+        mockTableView.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
+        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        mockTableView.reloadData()
+        let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
+        XCTAssertTrue(cell.configCellGotCalled, "An ItemListDataProvider shall call the configCell() method during cellForRow(at:).")
+    }
 }
 
 extension ItemListDataProviderTests {
@@ -88,6 +98,14 @@ extension ItemListDataProviderTests {
             cellGotDequeued = true
 
             return super.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+        }
+    }
+
+    class MockItemCell: ItemCell {
+        var configCellGotCalled = false
+
+        override func configCell(with item: ToDoItem) {
+            configCellGotCalled = true
         }
     }
 
