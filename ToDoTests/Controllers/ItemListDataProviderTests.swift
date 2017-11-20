@@ -103,7 +103,12 @@ class ItemListDataProviderTests: XCTestCase {
 
     func testDeleteButtonInFirstSectionShowsTitleCheck() {
         let deleteButtonTitle = sutTableView.delegate?.tableView?(sutTableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertEqual("Check", deleteButtonTitle, "An ItemListDataProvider shall set the title ot the delete button to 'Check' when a ToDo item is swiped.")
+        XCTAssertEqual("Check", deleteButtonTitle, "An ItemListDataProvider shall set the title of the delete button to 'Check' when a ToDo item is swiped.")
+    }
+
+    func testDeleteButtonInSecondSectionShowsTitleUncheck() {
+        let deleteButtonTitle = sutTableView.delegate?.tableView?(sutTableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 1))
+        XCTAssertEqual("Uncheck", deleteButtonTitle, "An ItemListDataProvider shall set the title of the delete button to 'Uncheck' when a Done item is swiped.")
     }
 }
 

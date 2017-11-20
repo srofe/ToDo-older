@@ -56,6 +56,13 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
     // MARK:- UITableViewDelegate compliance
 
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Check"
+        guard let section = Section(rawValue: indexPath.section) else { fatalError() }
+
+        var buttonTitle: String
+        switch section {
+        case .toDo: buttonTitle = "Check"
+        case .done: buttonTitle = "Uncheck"
+        }
+        return buttonTitle
     }
 }
