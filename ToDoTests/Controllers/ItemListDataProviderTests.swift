@@ -82,10 +82,11 @@ class ItemListDataProviderTests: XCTestCase {
         let mockTableView = MockTableView()
         mockTableView.dataSource = sut
         mockTableView.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
-        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        let item = ToDoItem(title: "First Item")
+        sut.itemManager?.add(item: item)
         mockTableView.reloadData()
         let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
-        XCTAssertTrue(cell.configCellGotCalled, "An ItemListDataProvider shall call the configCell() method during cellForRow(at:).")
+        XCTAssertEqual(item, cell.cachedItem, "An ItemManager shall set the item for a cell when callint the cellforRowAt() method.")
     }
 }
 
@@ -102,10 +103,10 @@ extension ItemListDataProviderTests {
     }
 
     class MockItemCell: ItemCell {
-        var configCellGotCalled = false
+        var cachedItem: ToDoItem?
 
         override func configCell(with item: ToDoItem) {
-            configCellGotCalled = true
+            cachedItem = item
         }
     }
 
