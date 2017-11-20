@@ -17,6 +17,8 @@ class ItemListDataProviderTests: XCTestCase {
     // Variables used in this test class.
     var sutTableView: UITableView!
     var sutItemListViewController: ItemListViewController!
+    var sutFirstItem: ToDoItem!
+    var sutSecondItem: ToDoItem!
 
     override func setUp() {
         sut = ItemListDataProvider()
@@ -26,6 +28,8 @@ class ItemListDataProviderTests: XCTestCase {
         sutItemListViewController.loadViewIfNeeded()
         sutTableView = sutItemListViewController.tableView
         sutTableView.dataSource = sut
+        sutFirstItem = ToDoItem(title: "First Item")
+        sutSecondItem = ToDoItem(title: "Second Item")
 
         super.setUp()
     }
@@ -33,6 +37,8 @@ class ItemListDataProviderTests: XCTestCase {
     override func tearDown() {
         sut = nil
         sutTableView = nil
+        sutFirstItem = nil
+        sutSecondItem = nil
 
         super.tearDown()
     }
@@ -42,17 +48,17 @@ class ItemListDataProviderTests: XCTestCase {
     }
 
     func testNumbrerOfRowsInFirstSectionIsTodoCount() {
-        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        sut.itemManager?.add(item: sutFirstItem)
         XCTAssertEqual(1, sutTableView.numberOfRows(inSection: 0))
-        sut.itemManager?.add(item: ToDoItem(title: "Second Item"))
+        sut.itemManager?.add(item: sutSecondItem)
         sutTableView.reloadData()
 
         XCTAssertEqual(sut.itemManager?.toDoCount, sutTableView.numberOfRows(inSection: 0), "An ItemListDataProvider shall set the number of rows in the first section to the number of ToDo items.")
     }
 
     func testNumberOfRowsIntSecondSectionIsDoneCount() {
-        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
-        sut.itemManager?.add(item: ToDoItem(title: "Second Item"))
+        sut.itemManager?.add(item: sutFirstItem)
+        sut.itemManager?.add(item: sutSecondItem)
         sut.itemManager?.checkItem(at: 0)
         XCTAssertEqual(1, sutTableView.numberOfRows(inSection: 1))
         sut.itemManager?.checkItem(at: 0)
@@ -62,7 +68,7 @@ class ItemListDataProviderTests: XCTestCase {
     }
 
     func testCellForRowReturnsItemCell() {
-        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        sut.itemManager?.add(item: sutFirstItem)
         sutTableView.reloadData()
         let cell = sutTableView.cellForRow(at: IndexPath(row: 0, section: 0))
         XCTAssertTrue(cell is ItemCell, "An ItemListDataProvider shall provide access to cells at a valid row and index.")
@@ -72,7 +78,7 @@ class ItemListDataProviderTests: XCTestCase {
         let mockTableView = MockTableView()
         mockTableView.dataSource = sut
         mockTableView.register(ItemCell.self, forCellReuseIdentifier: "ItemCell")
-        sut.itemManager?.add(item: ToDoItem(title: "First Item"))
+        sut.itemManager?.add(item: sutFirstItem)
         mockTableView.reloadData()
         _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
         XCTAssertTrue(mockTableView.cellGotDequeued, "An ItemListDatProvider shall deque cells from the table view.")
@@ -82,11 +88,10 @@ class ItemListDataProviderTests: XCTestCase {
         let mockTableView = MockTableView()
         mockTableView.dataSource = sut
         mockTableView.register(MockItemCell.self, forCellReuseIdentifier: "ItemCell")
-        let item = ToDoItem(title: "First Item")
-        sut.itemManager?.add(item: item)
+        sut.itemManager?.add(item: sutFirstItem)
         mockTableView.reloadData()
         let cell = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! MockItemCell
-        XCTAssertEqual(item, cell.cachedItem, "An ItemManager shall set the item for a cell when callint the cellforRowAt() method.")
+        XCTAssertEqual(sutFirstItem, cell.cachedItem, "An ItemManager shall set the item for a cell when callint the cellforRowAt() method.")
     }
 }
 
