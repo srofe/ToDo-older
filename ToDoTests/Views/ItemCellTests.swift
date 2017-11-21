@@ -11,34 +11,39 @@ import XCTest
 
 class ItemCellTests: XCTestCase {
 
+    // The System Under Test.
+    var sut: ItemCell!
+
+    // Variables used in this test class.
+    var sutTableView: UITableView!
+    var sutDataSource: FakeDataSource!
+
     override func setUp() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController
+        controller.loadViewIfNeeded()
+        sutTableView = controller.tableView
+        sutDataSource = FakeDataSource()
+        sutTableView?.dataSource = sutDataSource
+        sut = sutTableView?.dequeueReusableCell(withIdentifier: "ItemCell", for: IndexPath(row: 0, section: 0)) as! ItemCell
+
         super.setUp()
     }
 
     override func tearDown() {
+        sutDataSource = nil
+        sutTableView = nil
+        sut = nil
+
         super.tearDown()
     }
 
     func testHasNameLabel() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController
-        controller.loadViewIfNeeded()
-        let tableView = controller.tableView
-        let dataSource = FakeDataSource()
-        tableView?.dataSource = dataSource
-        let cell = tableView?.dequeueReusableCell(withIdentifier: "ItemCell", for: IndexPath(row: 0, section: 0)) as! ItemCell
-        XCTAssertNotNil(cell.titleLabel, "An ItemCell shall have a title label.")
+        XCTAssertNotNil(sut.titleLabel, "An ItemCell shall have a title label.")
     }
 
     func testHasLocationLabel() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController
-        controller.loadViewIfNeeded()
-        let tableView = controller.tableView
-        let dataSource = FakeDataSource()
-        tableView?.dataSource = dataSource
-        let cell = tableView?.dequeueReusableCell(withIdentifier: "ItemCell", for: IndexPath(row: 0, section: 0)) as! ItemCell
-        XCTAssertNotNil(cell.locationLabel, "An ItemCell shall have a location label.")
+        XCTAssertNotNil(sut.locationLabel, "An ItemCell shall have a location label.")
     }
 }
 
