@@ -64,6 +64,11 @@ class ItemCellTests: XCTestCase {
         print("Timestamp: \(timestamp!)")
         XCTAssertEqual("01/01/2017", sut.dateLabel.text, "An ItemCell configCell() shall set the date label if a date has been supplied.")
     }
+
+    func testConfigCellSetsLocationLabel() {
+        sut.configCell(with: ToDoItem(title: "First Item", location: Location(name: "Location for this item.")))
+        XCTAssertEqual("Location for this item.", sut.locationLabel.text, "An ItemCell configCell() shall set the locatioin lable if a location has been supplied.")
+    }
 }
 
 extension ItemCellTests {
