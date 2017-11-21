@@ -49,6 +49,11 @@ class ItemCellTests: XCTestCase {
     func testHasDateLabel() {
         XCTAssertNotNil(sut.dateLabel, "An ItemCell shall have a date label.")
     }
+
+    func testConfigCellSetsTitleLabel() {
+        sut.configCell(with: ToDoItem(title: "First Item"))
+        XCTAssertEqual("First Item", sut.titleLabel.text, "An ItemCell configCell() shall set the title label text.")
+    }
 }
 
 extension ItemCellTests {

@@ -14,7 +14,8 @@ class ItemCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
 
-    func configCell(with: ToDoItem) {
+    func configCell(with item: ToDoItem) {
+        titleLabel.text = item.title
     }
 
 }
