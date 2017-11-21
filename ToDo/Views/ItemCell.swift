@@ -11,6 +11,7 @@ import UIKit
 class ItemCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
 
     func configCell(with: ToDoItem) {
     }

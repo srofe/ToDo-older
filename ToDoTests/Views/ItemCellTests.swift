@@ -29,6 +29,17 @@ class ItemCellTests: XCTestCase {
         let cell = tableView?.dequeueReusableCell(withIdentifier: "ItemCell", for: IndexPath(row: 0, section: 0)) as! ItemCell
         XCTAssertNotNil(cell.titleLabel, "An ItemCell shall have a title label.")
     }
+
+    func testHasLocationLabel() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController
+        controller.loadViewIfNeeded()
+        let tableView = controller.tableView
+        let dataSource = FakeDataSource()
+        tableView?.dataSource = dataSource
+        let cell = tableView?.dequeueReusableCell(withIdentifier: "ItemCell", for: IndexPath(row: 0, section: 0)) as! ItemCell
+        XCTAssertNotNil(cell.locationLabel, "An ItemCell shall have a location label.")
+    }
 }
 
 extension ItemCellTests {
