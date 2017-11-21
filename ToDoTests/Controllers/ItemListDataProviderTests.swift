@@ -119,6 +119,17 @@ class ItemListDataProviderTests: XCTestCase {
         XCTAssertEqual(0, sutTableView.numberOfRows(inSection: 0), "An ItemListDataProvider shall delete an item from the ToDo list when it has been checked (deleted).")
         XCTAssertEqual(1, sutTableView.numberOfRows(inSection: 1), "An ItemListDataProvider shall add an item to the Done list when it has been checked (deleted from the ToDo list).")
     }
+
+    func testUncheckingAnItemUnchecksItInTheItemManager() {
+        sut.itemManager?.add(item: sutFirstItem)
+        sut.itemManager?.checkItem(at: 0)
+        sutTableView.reloadData()
+        sutTableView.dataSource?.tableView?(sutTableView, commit: .delete, forRowAt: IndexPath(row: 0, section: 1))
+        XCTAssertEqual(1, sut.itemManager?.toDoCount)
+        XCTAssertEqual(0, sut.itemManager?.doneCount)
+        XCTAssertEqual(1, sutTableView.numberOfRows(inSection: 0), "An ItemListDataProvider shall add an item to the ToDo list when it has been unchecked (deleted from the Done list).")
+        XCTAssertEqual(0, sutTableView.numberOfRows(inSection: 1), "An ItemListDataProvider shall delete an item from the Done list when it has been unchecked (deleted).")
+    }
 }
 
 extension ItemListDataProviderTests {

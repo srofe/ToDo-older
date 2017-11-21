@@ -19,6 +19,10 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
 
     // MARK:- UITableViewDataSource compliance
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let itemManager = itemManager else { return 0 }
         guard let itemSection = Section(rawValue: section) else { fatalError() }
@@ -49,12 +53,14 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
         return cell
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        itemManager?.checkItem(at: indexPath.row)
+        guard let itemManager = itemManager else { fatalError() }
+        guard let section = Section(rawValue: indexPath.section) else { fatalError() }
+
+        switch section {
+        case .toDo: itemManager.checkItem(at: indexPath.row)
+        case .done: itemManager.uncheckItem(at: indexPath.row)
+        }
         tableView.reloadData()
     }
 
