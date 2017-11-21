@@ -12,6 +12,7 @@ class ItemCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
 
     func configCell(with: ToDoItem) {
     }

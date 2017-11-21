@@ -45,6 +45,10 @@ class ItemCellTests: XCTestCase {
     func testHasLocationLabel() {
         XCTAssertNotNil(sut.locationLabel, "An ItemCell shall have a location label.")
     }
+
+    func testHasDateLabel() {
+        XCTAssertNotNil(sut.dateLabel, "An ItemCell shall have a date label.")
+    }
 }
 
 extension ItemCellTests {
