@@ -53,6 +53,11 @@ class ItemListDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate
         return 2
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        itemManager?.checkItem(at: indexPath.row)
+        tableView.reloadData()
+    }
+
     // MARK:- UITableViewDelegate compliance
 
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {

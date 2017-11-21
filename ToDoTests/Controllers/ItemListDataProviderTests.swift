@@ -110,6 +110,15 @@ class ItemListDataProviderTests: XCTestCase {
         let deleteButtonTitle = sutTableView.delegate?.tableView?(sutTableView, titleForDeleteConfirmationButtonForRowAt: IndexPath(row: 0, section: 1))
         XCTAssertEqual("Uncheck", deleteButtonTitle, "An ItemListDataProvider shall set the title of the delete button to 'Uncheck' when a Done item is swiped.")
     }
+
+    func testCheckingAnItemCheksItInTheItemManager() {
+        sut.itemManager?.add(item: sutFirstItem)
+        sutTableView.dataSource?.tableView?(sutTableView, commit: .delete, forRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(0, sut.itemManager?.toDoCount)
+        XCTAssertEqual(1, sut.itemManager?.doneCount)
+        XCTAssertEqual(0, sutTableView.numberOfRows(inSection: 0), "An ItemListDataProvider shall delete an item from the ToDo list when it has been checked (deleted).")
+        XCTAssertEqual(1, sutTableView.numberOfRows(inSection: 1), "An ItemListDataProvider shall add an item to the Done list when it has been checked (deleted from the ToDo list).")
+    }
 }
 
 extension ItemListDataProviderTests {
