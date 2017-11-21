@@ -16,6 +16,13 @@ class ItemCell: UITableViewCell {
 
     func configCell(with item: ToDoItem) {
         titleLabel.text = item.title
+
+        if let timestamp = item.timestamp {
+            let date = Date(timeIntervalSince1970: timestamp)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            dateLabel.text = dateFormatter.string(from: date)
+        }
     }
 
 }

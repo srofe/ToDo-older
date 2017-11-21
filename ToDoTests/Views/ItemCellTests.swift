@@ -54,6 +54,16 @@ class ItemCellTests: XCTestCase {
         sut.configCell(with: ToDoItem(title: "First Item"))
         XCTAssertEqual("First Item", sut.titleLabel.text, "An ItemCell configCell() shall set the title label text.")
     }
+
+    func testConfigCellSetsDateLabel() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let date = dateFormatter.date(from: "01/01/2017")
+        let timestamp = date?.timeIntervalSince1970
+        sut.configCell(with: ToDoItem(title: "First Item", timestamp: timestamp))
+        print("Timestamp: \(timestamp!)")
+        XCTAssertEqual("01/01/2017", sut.dateLabel.text, "An ItemCell configCell() shall set the date label if a date has been supplied.")
+    }
 }
 
 extension ItemCellTests {
