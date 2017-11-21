@@ -10,6 +10,12 @@ import UIKit
 
 class ItemCell: UITableViewCell {
 
+    lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter
+    }()
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -19,8 +25,6 @@ class ItemCell: UITableViewCell {
 
         if let timestamp = item.timestamp {
             let date = Date(timeIntervalSince1970: timestamp)
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
             dateLabel.text = dateFormatter.string(from: date)
         }
     }
