@@ -69,6 +69,14 @@ class ItemCellTests: XCTestCase {
         sut.configCell(with: ToDoItem(title: "First Item", location: Location(name: "Location for this item.")))
         XCTAssertEqual("Location for this item.", sut.locationLabel.text, "An ItemCell configCell() shall set the locatioin lable if a location has been supplied.")
     }
+
+    func testTitleIsStrikeThroughWhenItemChecked() {
+        let location = Location(name: "Location Name")
+        let item = ToDoItem(title: "First Item", description: nil, timestamp: 1456150025, location: location)
+        sut.configCell(with: item, checked: true)
+        let attributedString = NSAttributedString(string: "First Item", attributes: [NSAttributedStringKey.strikethroughStyle: NSUnderlineStyle.styleSingle.rawValue])
+        XCTAssertEqual(attributedString, sut.titleLabel.attributedText, "An ItemCell shall set the title label text to be strikethrough for a checked item.")
+    }
 }
 
 extension ItemCellTests {
