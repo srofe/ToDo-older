@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreLocation
 @testable import ToDo
 
 class DetailViewControllerTests: XCTestCase {
@@ -23,6 +24,8 @@ class DetailViewControllerTests: XCTestCase {
     }
 
     override func tearDown() {
+        sut = nil
+
         super.tearDown()
     }
 
@@ -49,5 +52,17 @@ class DetailViewControllerTests: XCTestCase {
     func testHasMapView() {
         let mapViewIsSubview = sut.mapView?.isDescendant(of: sut.view) ?? false
         XCTAssertTrue(mapViewIsSubview, "A DetailViewController shall have a map view which is a sub-view of the view controller's view.")
+    }
+
+    func testSettingItemSetsTextLabels() {
+        let coordinate = CLLocationCoordinate2D(latitude: 27.4698, longitude: 153.0251)
+        let location = Location(name: "Brisbane", coordinate: coordinate)
+        let item = ToDoItem(title: "Visit Southbank", description: "Do something fun!", timestamp: 1511923490, location: location)
+        let itemManager = ItemManager()
+        itemManager.add(item: item)
+        sut.itemInformation = (itemManager, 0)
+        sut.beginAppearanceTransition(true, animated: true)
+        sut.endAppearanceTransition()
+        XCTAssertEqual("Visit Southbank", sut.titleLabel.text, "A DetailViewControll shall set the title text when the item information is set.")
     }
 }

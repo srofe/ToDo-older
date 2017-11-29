@@ -17,4 +17,14 @@ class DetailViewController: UIViewController {
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
 
+    var itemInformation: (ItemManager, Int)?
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard let itemInfo = itemInformation else { return }
+        let selectedItem = itemInfo.0.item(at: itemInfo.1)
+
+        titleLabel.text = selectedItem.title
+    }
 }
