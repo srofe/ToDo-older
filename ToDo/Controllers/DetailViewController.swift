@@ -18,6 +18,11 @@ class DetailViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
 
     var itemInformation: (ItemManager, Int)?
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        return dateFormatter
+    }()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,5 +31,12 @@ class DetailViewController: UIViewController {
         let selectedItem = itemInfo.0.item(at: itemInfo.1)
 
         titleLabel.text = selectedItem.title
+        locationLabel.text = selectedItem.location?.name
+        descriptionLabel.text = selectedItem.description
+
+        if let timestamp = selectedItem.timestamp {
+            let date = Date(timeIntervalSince1970: timestamp)
+            timestampLabel.text = dateFormatter.string(from: date)
+        }
     }
 }
