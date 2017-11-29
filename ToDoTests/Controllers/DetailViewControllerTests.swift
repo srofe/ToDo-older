@@ -46,7 +46,7 @@ class DetailViewControllerTests: XCTestCase {
     }
 
     func testHasTimestampLabel() {
-        let timestampLabelIsSubview = sut.timestampLabel?.isDescendant(of: sut.view) ?? false
+        let timestampLabelIsSubview = sut.dateLabel?.isDescendant(of: sut.view) ?? false
         XCTAssertTrue(timestampLabelIsSubview, "A DetailViewController shall have a timestamp label which is a sub-view of the view controller's view.")
     }
 
@@ -83,9 +83,9 @@ class DetailViewControllerTests: XCTestCase {
         XCTAssertEqual("Do something fun!", sut.descriptionLabel.text, "A DetailViewController shall set the description text when the item information is set.")
     }
 
-    func testSettingItemSetsTimestampLabel() {
+    func testSettingItemSetsDateLabel() {
         sut.beginAppearanceTransition(true, animated: true)
         sut.endAppearanceTransition()
-        XCTAssertEqual("29/11/2017", sut.timestampLabel.text, "A DetailViewController shall set the timestamp text when the item information is set.")
+        XCTAssertEqual("29/11/2017", sut.dateLabel.text, "A DetailViewController shall set the timestamp text when the item information is set.")
     }
 }

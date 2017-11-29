@@ -95,7 +95,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzn-WH-Fkz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzn-WH-Fkz">
                                 <rect key="frame" x="16" y="479" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -125,10 +125,10 @@
                         <viewLayoutGuide key="safeArea" id="rHY-ZC-wpg"/>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="uzn-WH-Fkz" id="pNN-Ht-6Es"/>
                         <outlet property="descriptionLabel" destination="itw-Lm-ZGy" id="bb2-hW-2bo"/>
                         <outlet property="locationLabel" destination="fgW-X3-ENV" id="4w7-ly-d02"/>
                         <outlet property="mapView" destination="7SL-Ji-03j" id="IjD-Zs-8Jv"/>
-                        <outlet property="timestampLabel" destination="uzn-WH-Fkz" id="qtG-Vs-dhP"/>
                         <outlet property="titleLabel" destination="a4V-cB-us3" id="tmL-MT-n9v"/>
                     </connections>
                 </viewController>

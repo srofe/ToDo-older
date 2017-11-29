@@ -12,7 +12,7 @@ import MapKit
 class DetailViewController: UIViewController {
     
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var timestampLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
@@ -36,7 +36,7 @@ class DetailViewController: UIViewController {
 
         if let timestamp = selectedItem.timestamp {
             let date = Date(timeIntervalSince1970: timestamp)
-            timestampLabel.text = dateFormatter.string(from: date)
+            dateLabel.text = dateFormatter.string(from: date)
         }
     }
 }
