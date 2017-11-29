@@ -11,5 +11,8 @@ import UIKit
 class DetailViewController: UIViewController {
     
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var timestampLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
     
 }
