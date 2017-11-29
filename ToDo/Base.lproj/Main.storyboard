@@ -116,6 +116,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7SL-Ji-03j">
+                                <rect key="frame" x="16" y="20" width="343" height="380"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="rHY-ZC-wpg"/>
@@ -123,6 +127,7 @@
                     <connections>
                         <outlet property="descriptionLabel" destination="itw-Lm-ZGy" id="bb2-hW-2bo"/>
                         <outlet property="locationLabel" destination="fgW-X3-ENV" id="4w7-ly-d02"/>
+                        <outlet property="mapView" destination="7SL-Ji-03j" id="IjD-Zs-8Jv"/>
                         <outlet property="timestampLabel" destination="uzn-WH-Fkz" id="qtG-Vs-dhP"/>
                         <outlet property="titleLabel" destination="a4V-cB-us3" id="tmL-MT-n9v"/>
                     </connections>

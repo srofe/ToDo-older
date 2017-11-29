@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailViewController: UIViewController {
     
@@ -14,5 +15,6 @@ class DetailViewController: UIViewController {
     @IBOutlet var timestampLabel: UILabel!
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
-    
+    @IBOutlet var mapView: MKMapView!
+
 }
