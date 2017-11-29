@@ -21,6 +21,8 @@ class ItemListDataProviderTests: XCTestCase {
     var sutSecondItem: ToDoItem!
 
     override func setUp() {
+        super.setUp()
+
         sut = ItemListDataProvider()
         sut.itemManager = ItemManager()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -31,8 +33,6 @@ class ItemListDataProviderTests: XCTestCase {
         sutTableView.delegate = sut
         sutFirstItem = ToDoItem(title: "First Item")
         sutSecondItem = ToDoItem(title: "Second Item")
-
-        super.setUp()
     }
 
     override func tearDown() {

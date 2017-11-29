@@ -24,6 +24,8 @@
 		F45733691FBE349D00161F62 /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733681FBE349D00161F62 /* ItemListDataProviderTests.swift */; };
 		F936C5001FC3E24900887E9C /* ItemCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936C4FF1FC3E24900887E9C /* ItemCellTests.swift */; };
 		F99500BE1FBE963C00848826 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99500BD1FBE963C00848826 /* ItemCell.swift */; };
+		F9D3512F1FCE3631004A194A /* DetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D3512E1FCE3631004A194A /* DetailViewControllerTests.swift */; };
+		F9D351311FCE3701004A194A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D351301FCE3701004A194A /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		F45733681FBE349D00161F62 /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
 		F936C4FF1FC3E24900887E9C /* ItemCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellTests.swift; sourceTree = "<group>"; };
 		F99500BD1FBE963C00848826 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		F9D3512E1FCE3631004A194A /* DetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerTests.swift; sourceTree = "<group>"; };
+		F9D351301FCE3701004A194A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,7 @@
 			children = (
 				F45733601FBD70A100161F62 /* ItemListViewControllerTests.swift */,
 				F45733681FBE349D00161F62 /* ItemListDataProviderTests.swift */,
+				F9D3512E1FCE3631004A194A /* DetailViewControllerTests.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 			children = (
 				F45733631FBD721700161F62 /* ItemListViewController.swift */,
 				F45733661FBD786E00161F62 /* ItemListDataProvider.swift */,
+				F9D351301FCE3701004A194A /* DetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 				F99500BE1FBE963C00848826 /* ItemCell.swift in Sources */,
 				F42603851FBBA490009179EA /* ToDoItem.swift in Sources */,
 				F45733641FBD721700161F62 /* ItemListViewController.swift in Sources */,
+				F9D351311FCE3701004A194A /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +370,7 @@
 				F45733691FBE349D00161F62 /* ItemListDataProviderTests.swift in Sources */,
 				F457335A1FBBD5C400161F62 /* ItemManagerTests.swift in Sources */,
 				F426038A1FBBAF43009179EA /* LocationTests.swift in Sources */,
+				F9D3512F1FCE3631004A194A /* DetailViewControllerTests.swift in Sources */,
 				F426037E1FBBA374009179EA /* ToDoItemTests.swift in Sources */,
 				F45733611FBD70A100161F62 /* ItemListViewControllerTests.swift in Sources */,
 			);
