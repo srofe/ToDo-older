@@ -17,6 +17,7 @@ class DetailViewControllerTests: XCTestCase {
 
     // Variables used in this test class.
     var sutItemManager: ItemManager!
+    var sutCoordinate: CLLocationCoordinate2D!
 
     override func setUp() {
         super.setUp()
@@ -25,8 +26,8 @@ class DetailViewControllerTests: XCTestCase {
         sut = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         sut.loadViewIfNeeded()
 
-        let coordinate = CLLocationCoordinate2D(latitude: 27.4698, longitude: 153.0251)
-        let location = Location(name: "Brisbane", coordinate: coordinate)
+        sutCoordinate = CLLocationCoordinate2D(latitude: 27.4698, longitude: 153.0251)
+        let location = Location(name: "Brisbane", coordinate: sutCoordinate)
         let item = ToDoItem(title: "Visit Southbank", description: "Do something fun!", timestamp: 1511923490, location: location)
         sutItemManager = ItemManager()
         sutItemManager.add(item: item)
@@ -34,6 +35,7 @@ class DetailViewControllerTests: XCTestCase {
     }
 
     override func tearDown() {
+        sutCoordinate = nil
         sutItemManager.removeAllItems()
         sut = nil
 
@@ -87,5 +89,17 @@ class DetailViewControllerTests: XCTestCase {
         sut.beginAppearanceTransition(true, animated: true)
         sut.endAppearanceTransition()
         XCTAssertEqual("29/11/2017", sut.dateLabel.text, "A DetailViewController shall set the timestamp text when the item information is set.")
+    }
+
+    func testSettingItemSetsCoordinateLatitude() {
+        sut.beginAppearanceTransition(true, animated: true)
+        sut.endAppearanceTransition()
+        XCTAssertEqual(sutCoordinate.latitude, sut.mapView.centerCoordinate.latitude, accuracy: 0.0001, "A DetailViewController shall set the latitude of the map view centre coordinate when the item information is set.")
+    }
+
+    func testSettingItemSetsCoordinateLongitude() {
+        sut.beginAppearanceTransition(true, animated: true)
+        sut.endAppearanceTransition()
+        XCTAssertEqual(sutCoordinate.longitude, sut.mapView.centerCoordinate.longitude, accuracy: 0.0001, "A DetailViewController shall set the longitude of the map view centre coordinate when the item information is set.")
     }
 }

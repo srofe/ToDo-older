@@ -38,5 +38,11 @@ class DetailViewController: UIViewController {
             let date = Date(timeIntervalSince1970: timestamp)
             dateLabel.text = dateFormatter.string(from: date)
         }
+
+        if let coordinate = selectedItem.location?.coordinate {
+            let region = MKCoordinateRegionMakeWithDistance(coordinate,
+                100, 100)
+            mapView.region = region
+        }
     }
 }
