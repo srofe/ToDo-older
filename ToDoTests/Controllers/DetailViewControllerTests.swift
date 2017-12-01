@@ -43,28 +43,23 @@ class DetailViewControllerTests: XCTestCase {
     }
 
     func testHasTitleLabel() {
-        let titleLableIsSubview = sut.titleLabel?.isDescendant(of: sut.view) ?? false
-        XCTAssertTrue(titleLableIsSubview, "A DetailViewController shall have a title label which is a sub-view of the view controller's view.")
+        XCTAssertNotNil(sut.titleLabel, "A DetailViewController shall have a title label.")
     }
 
     func testHasTimestampLabel() {
-        let timestampLabelIsSubview = sut.dateLabel?.isDescendant(of: sut.view) ?? false
-        XCTAssertTrue(timestampLabelIsSubview, "A DetailViewController shall have a timestamp label which is a sub-view of the view controller's view.")
+        XCTAssertNotNil(sut.dateLabel, "A DetailViewController shall have a date label.")
     }
 
     func testHasLocationLabel() {
-        let locationLabelIsSubview = sut.locationLabel?.isDescendant(of: sut.view) ?? false
-        XCTAssertTrue(locationLabelIsSubview, "A DetailViewController shall have a location label which is a sub-view of the view controller's view.")
+        XCTAssertNotNil(sut.locationLabel, "A DetailViewController shall have a location label.")
     }
 
     func testHasDescriptionLabel() {
-        let descriptionLabelIsSubview = sut.locationLabel?.isDescendant(of: sut.view) ?? false
-        XCTAssertTrue(descriptionLabelIsSubview, "A DetailViewController shall have a description label which is a sub-view of the view controller's view.")
+        XCTAssertNotNil(sut.descriptionLabel, "A DetailViewController shall have a description label.")
     }
 
     func testHasMapView() {
-        let mapViewIsSubview = sut.mapView?.isDescendant(of: sut.view) ?? false
-        XCTAssertTrue(mapViewIsSubview, "A DetailViewController shall have a map view which is a sub-view of the view controller's view.")
+        XCTAssertNotNil(sut.mapView, "A DetailViewController shall have a map view.")
     }
 
     func testSettingItemSetsTitleLabel() {
