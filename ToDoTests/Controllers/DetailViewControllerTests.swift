@@ -113,4 +113,8 @@ class DetailViewControllerTests: XCTestCase {
         XCTAssertEqual(0, sutItemManager.toDoCount, "A DetailViewController shall update the ToDo count when checkItem() is called.")
         XCTAssertEqual(1, sutItemManager.doneCount, "A DetailViewController shall update the Done count when checkItem() is called.")
     }
+
+    func testCheckButtonHasCorrectName() {
+        XCTAssertEqual("Check", sut.checkButton.titleLabel?.text, "A DetailViewController check button hsall have the name 'Check'.")
+    }
 }
