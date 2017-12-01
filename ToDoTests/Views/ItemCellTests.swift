@@ -19,6 +19,8 @@ class ItemCellTests: XCTestCase {
     var sutDataSource: FakeDataSource!
 
     override func setUp() {
+        super.setUp()
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ItemListViewController") as! ItemListViewController
         controller.loadViewIfNeeded()
@@ -26,8 +28,6 @@ class ItemCellTests: XCTestCase {
         sutDataSource = FakeDataSource()
         sutTableView?.dataSource = sutDataSource
         sut = sutTableView?.dequeueReusableCell(withIdentifier: "ItemCell", for: IndexPath(row: 0, section: 0)) as! ItemCell
-
-        super.setUp()
     }
 
     override func tearDown() {
