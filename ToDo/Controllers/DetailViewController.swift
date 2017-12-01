@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet weak var checkButton: UIButton!
 
     var itemInformation: (ItemManager, Int)?
     let dateFormatter: DateFormatter = {
@@ -43,6 +44,12 @@ class DetailViewController: UIViewController {
             let region = MKCoordinateRegionMakeWithDistance(coordinate,
                 100, 100)
             mapView.region = region
+        }
+    }
+
+    @IBAction func checkItem(_ sender: UIButton) {
+        if let itemInfo = itemInformation {
+            itemInfo.0.checkItem(at: itemInfo.1)
         }
     }
 }

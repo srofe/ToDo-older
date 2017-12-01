@@ -102,4 +102,20 @@ class DetailViewControllerTests: XCTestCase {
         sut.endAppearanceTransition()
         XCTAssertEqual(sutCoordinate.longitude, sut.mapView.centerCoordinate.longitude, accuracy: 0.0001, "A DetailViewController shall set the longitude of the map view centre coordinate when the item information is set.")
     }
+
+    func testCheckButtonIsConnected() {
+        XCTAssertNotNil(sut.checkButton, "A DetailViewController shall have an outlet for the check button.")
+    }
+
+    func testCheckButtonHasAction() {
+        let button: UIButton = sut.checkButton
+        let controlEvents = button.actions(forTarget: sut, forControlEvent: .touchUpInside)
+        XCTAssertTrue((controlEvents?.contains("checkItem:")) ?? false, "A DetailViewController shall have an action for the check button.")
+    }
+
+    func testCheckItemUpdatesToDoAndDoneCounts() {
+        sut.checkItem(sut.checkButton)
+        XCTAssertEqual(0, sutItemManager.toDoCount, "A DetailViewController shall update the ToDo count when checkItem() is called.")
+        XCTAssertEqual(1, sutItemManager.doneCount, "A DetailViewController shall update the Done count when checkItem() is called.")
+    }
 }
