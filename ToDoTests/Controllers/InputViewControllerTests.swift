@@ -47,4 +47,12 @@ class InputViewControllerTests: XCTestCase {
     func testHasDescriptionTextField() {
         XCTAssertNotNil(sut.descriptionTextField, "An InputViewController shall have a description text field.")
     }
+
+    func testHasSaveButton() {
+        XCTAssertNotNil(sut.saveButton, "An InputViewController shall have a save button.")
+    }
+
+    func testSaveButtonTextIsSave() {
+        XCTAssertEqual(sut.saveButton.titleLabel?.text, "Save", "An InputViewController save button text shall be 'Save'.")
+    }
 }
