@@ -55,4 +55,12 @@ class InputViewControllerTests: XCTestCase {
     func testSaveButtonTextIsSave() {
         XCTAssertEqual(sut.saveButton.titleLabel?.text, "Save", "An InputViewController save button text shall be 'Save'.")
     }
+
+    func testHasCancelBzutton() {
+        XCTAssertNotNil(sut.cancelButton, "An InputViewController shall have a cancel button.")
+    }
+
+    func testCancelButtonTextIsCancel() {
+        XCTAssertEqual(sut.cancelButton.titleLabel?.text, "Cancel", "An InputViewController cancel button text shall be 'Cancel'.")
+    }
 }
