@@ -63,4 +63,16 @@ class InputViewControllerTests: XCTestCase {
     func testCancelButtonTextIsCancel() {
         XCTAssertEqual(sut.cancelButton.titleLabel?.text, "Cancel", "An InputViewController cancel button text shall be 'Cancel'.")
     }
+
+    func testSaveButtonHasAction() {
+        let button = sut.saveButton
+        let controlEvents = button?.actions(forTarget: sut, forControlEvent: .touchUpInside)
+        XCTAssertTrue(controlEvents?.contains("saveItem:") ?? false, "An InputViewController shall have an action for the save button.")
+    }
+
+    func testCancelButtonHasAction() {
+        let button = sut.cancelButton
+        let controlEvents = button?.actions(forTarget: sut, forControlEvent: .touchUpInside)
+        XCTAssertTrue(controlEvents?.contains("cancel:") ?? false, "An InputViewController shall have an action for the cancel button.")
+    }
 }

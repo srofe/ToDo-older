@@ -22,4 +22,9 @@ class InputViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    @IBAction func saveItem(_ sender: UIButton) {
+    }
+
+    @IBAction func cancel(_ sender: UIButton) {
+    }
 }
