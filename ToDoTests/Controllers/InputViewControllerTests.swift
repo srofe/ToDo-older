@@ -20,6 +20,7 @@ class InputViewControllerTests: XCTestCase {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         sut = storyboard.instantiateViewController(withIdentifier: "InputViewController") as! InputViewController
         sut.loadViewIfNeeded()
+        sut.itemManager = ItemManager()
     }
 
     override func tearDown() {
@@ -74,5 +75,37 @@ class InputViewControllerTests: XCTestCase {
         let button = sut.cancelButton
         let controlEvents = button?.actions(forTarget: sut, forControlEvent: .touchUpInside)
         XCTAssertTrue(controlEvents?.contains("cancel:") ?? false, "An InputViewController shall have an action for the cancel button.")
+    }
+
+    func testSaveButtonAddsItemToItemManager() {
+        sut.saveItem(sut.saveButton)
+        XCTAssertEqual(1, sut.itemManager?.toDoCount, "An InputViewController shall update the ToDo count when saveItem() is called.")
+    }
+
+    func testSaveButtonSavesItemTitleToToDoItem() {
+        sut.titleTextField.text = "New Item"
+        sut.saveItem(sut.saveButton)
+        let newItem = sut.itemManager?.item(at: 0)
+        XCTAssertEqual("New Item", newItem?.title, "An InputViewController shall set the item title for a new item when the saveItem() is called.")
+    }
+
+    func testSaveButtonSavesItemDateToToDoItem() {
+        // Note: 0:00 on 24 March 2017 in Brisbane is 14:00 on 23 March UTC
+        // since Brisbane is 10 hours ahead.
+        // 1970 - 2017 = 47 years (with 11 leap years).
+        // No days = 47 * 365 + 11 + 31 (Jan) + 28 (Feb) + 23 (Mar) = 17248 days
+        // No hours = 17248 * 24 + 14 (14:00 hours on 23) = 413966 hours
+        // No seconds = 41266 * 60 * 60 = 1490277600 seconds
+        sut.dateTextField.text = "24/03/2017"
+        sut.saveItem(sut.saveButton)
+        let newItem = sut.itemManager?.item(at: 0)
+        XCTAssertEqual(1490277600.0, newItem?.timestamp, "An InputViewController shall set the item timestampe for a new item when saveItem() is called.")
+    }
+
+    func testSaveButtonSavesItemDescriptonToToDoItem() {
+        sut.descriptionTextField.text = "Item description"
+        sut.saveItem(sut.saveButton)
+        let newItem = sut.itemManager?.item(at: 0)
+        XCTAssertEqual("Item description", newItem?.description, "An InputViewController shall set the item description fro a new item when saveItem() is called.")
     }
 }
