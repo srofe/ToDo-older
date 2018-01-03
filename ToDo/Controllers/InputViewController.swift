@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class InputViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class InputViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
 
     var itemManager: ItemManager?
+    lazy var geocoder = CLGeocoder()
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -30,11 +32,28 @@ class InputViewController: UIViewController {
     }
 
     @IBAction func saveItem(_ sender: UIButton) {
-        if let title = titleTextField.text {
+        if let title = titleTextField.text, title.count > 0 {
             let timestamp = dateFormatter.date(from: dateTextField.text!) ?? nil
             let description = descriptionTextField.text
-            let newItem = ToDoItem(title: title, description: description, timestamp: timestamp?.timeIntervalSince1970)
-            itemManager?.add(item: newItem)
+            let locationName = locationTextField.text ?? ""
+            var location: Location?
+            if let address = addressTextField.text, address.count > 0 {
+                geocoder.geocodeAddressString(address) { [unowned self] (placeMarks, error) in
+                    let placeMark = placeMarks?.first
+                    location = Location(name: locationName, coordinate: placeMark?.location?.coordinate)
+                    let newItem = ToDoItem(title: title,
+                                           description: description,
+                                           timestamp: timestamp?.timeIntervalSince1970,
+                                           location: location)
+                    self.itemManager?.add(item: newItem)
+                }
+            } else {
+                let newItem = ToDoItem(title: title,
+                                       description: description,
+                                       timestamp: timestamp?.timeIntervalSince1970,
+                                       location: location)
+                self.itemManager?.add(item: newItem)
+            }
         }
     }
 
