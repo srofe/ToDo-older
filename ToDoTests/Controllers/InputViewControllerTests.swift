@@ -146,7 +146,7 @@ class InputViewControllerTests: XCTestCase {
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
             let coordinate = placemarks?.first?.location?.coordinate
             guard let latitude = coordinate?.latitude else {
-                XCTFail()
+                XCTFail("The address latitude shall be fetched from the Geocoder.")
                 return
             }
             XCTAssertEqual(latitude, 37.3316, accuracy: 0.001, "The address coordinate latitude shall be within 0.001 degrees.")
@@ -161,7 +161,7 @@ class InputViewControllerTests: XCTestCase {
         CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
             let coordinate = placemarks?.first?.location?.coordinate
             guard let longitude = coordinate?.longitude else {
-                XCTFail()
+                XCTFail("The address longitude shall be fetched from the Geocoder.")
                 return
             }
             XCTAssertEqual(longitude, -122.0300, accuracy: 0.001, "The address coordinate longitude shall be within 0.001 degrees.")
