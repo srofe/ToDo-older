@@ -32,6 +32,18 @@ class APIClientTests: XCTestCase {
     
         XCTAssertEqual(urlComponents?.host, "awsometodos.com")
     }
+
+    func testLoginUsesExpectedPath() {
+        let sut = APIClient()
+        let mockURLSession = MockURLSession()
+        sut.session = mockURLSession
+        let completion = { (token: Token?, error: Error?) in }
+        sut.loginUser(withName: "dasdom", password: "1234", completion: completion)
+        guard let url = mockURLSession.url else { XCTFail(""); return }
+        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+
+        XCTAssertEqual(urlComponents?.path, "/login")
+    }
 }
 
 class MockURLSession: SessionProtocol {
