@@ -23,7 +23,7 @@ class APIClientTests: XCTestCase {
         sutMockURLSession = MockURLSession()
         sut.session = sutMockURLSession
         let completion = { (token: Token?, error: Error?) in }
-        sut.loginUser(withName: "dasdom", password: "1234", completion: completion)
+        sut.loginUser(withName: "dasdöm", password: "%&34", completion: completion)
     }
 
     override func tearDown() {
@@ -42,7 +42,7 @@ class APIClientTests: XCTestCase {
     }
 
     func testLoginUsesExpectedQuenry() {
-        XCTAssertEqual(sutMockURLSession.urlComponents?.query, "username=dasdom&password=1234")
+        XCTAssertEqual(sutMockURLSession.urlComponents?.percentEncodedQuery, "username=dasd%C3%B6m&password=%25%2634")
     }
 }
 
