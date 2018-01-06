@@ -10,45 +10,50 @@ import XCTest
 @testable import ToDo
 
 class APIClientTests: XCTestCase {
-    
+    // The System Under Test.
+    var sut: APIClient!
+
+    // Variables used in this test class.
+    var sutMockURLSession: MockURLSession!
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+
+        sut = APIClient()
+        sutMockURLSession = MockURLSession()
+        sut.session = sutMockURLSession
     }
-    
+
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sutMockURLSession = nil
+        sut = nil
+
         super.tearDown()
     }
 
     func testLoginUsesExpectedHost() {
-        let sut = APIClient()
-        let mockURLSession = MockURLSession()
-        sut.session = mockURLSession
         let completion = { (token: Token?, error: Error?) in }
         sut.loginUser(withName: "dasdom", password: "1234", completion: completion)
-        guard let url = mockURLSession.url else { XCTFail(""); return }
-        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-    
-        XCTAssertEqual(urlComponents?.host, "awsometodos.com")
+
+        XCTAssertEqual(sutMockURLSession.urlComponents?.host, "awsometodos.com")
     }
 
     func testLoginUsesExpectedPath() {
-        let sut = APIClient()
-        let mockURLSession = MockURLSession()
-        sut.session = mockURLSession
         let completion = { (token: Token?, error: Error?) in }
         sut.loginUser(withName: "dasdom", password: "1234", completion: completion)
-        guard let url = mockURLSession.url else { XCTFail(""); return }
-        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
 
-        XCTAssertEqual(urlComponents?.path, "/login")
+        XCTAssertEqual(sutMockURLSession.urlComponents?.path, "/login")
     }
 }
 
 class MockURLSession: SessionProtocol {
 
     var url: URL?
+
+    var urlComponents: URLComponents? {
+        guard let url = url else { return nil }
+        return URLComponents(url: url, resolvingAgainstBaseURL: true)
+    }
 
     func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         self.url = url
