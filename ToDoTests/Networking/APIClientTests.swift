@@ -40,6 +40,10 @@ class APIClientTests: XCTestCase {
     func testLoginUsesExpectedPath() {
         XCTAssertEqual(sutMockURLSession.urlComponents?.path, "/login")
     }
+
+    func testLoginUsesExpectedQuenry() {
+        XCTAssertEqual(sutMockURLSession.urlComponents?.query, "username=dasdom&password=1234")
+    }
 }
 
 class MockURLSession: SessionProtocol {
