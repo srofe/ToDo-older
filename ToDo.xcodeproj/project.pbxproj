@@ -22,6 +22,9 @@
 		F45733641FBD721700161F62 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733631FBD721700161F62 /* ItemListViewController.swift */; };
 		F45733671FBD786E00161F62 /* ItemListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733661FBD786E00161F62 /* ItemListDataProvider.swift */; };
 		F45733691FBE349D00161F62 /* ItemListDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45733681FBE349D00161F62 /* ItemListDataProviderTests.swift */; };
+		F47C25A120009544007BBBFC /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C25A020009544007BBBFC /* APIClientTests.swift */; };
+		F47C25A520009BD5007BBBFC /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C25A420009BD5007BBBFC /* APIClient.swift */; };
+		F47C25A82000A188007BBBFC /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47C25A72000A188007BBBFC /* Token.swift */; };
 		F48DC4251FD2730B00C57BB7 /* InputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48DC4241FD2730B00C57BB7 /* InputViewControllerTests.swift */; };
 		F48DC4271FD2743200C57BB7 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48DC4261FD2743200C57BB7 /* InputViewController.swift */; };
 		F936C5001FC3E24900887E9C /* ItemCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F936C4FF1FC3E24900887E9C /* ItemCellTests.swift */; };
@@ -69,6 +72,9 @@
 		F45733631FBD721700161F62 /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
 		F45733661FBD786E00161F62 /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 		F45733681FBE349D00161F62 /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
+		F47C25A020009544007BBBFC /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIClientTests.swift; path = ToDoTests/Networking/APIClientTests.swift; sourceTree = SOURCE_ROOT; };
+		F47C25A420009BD5007BBBFC /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = ../Networking/APIClient.swift; sourceTree = "<group>"; };
+		F47C25A72000A188007BBBFC /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Token.swift; path = ToDo/Networking/Token.swift; sourceTree = SOURCE_ROOT; };
 		F48DC4241FD2730B00C57BB7 /* InputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewControllerTests.swift; sourceTree = "<group>"; };
 		F48DC4261FD2743200C57BB7 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		F936C4FF1FC3E24900887E9C /* ItemCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCellTests.swift; sourceTree = "<group>"; };
@@ -130,6 +136,7 @@
 				F45733651FBD721D00161F62 /* Controllers */,
 				F42603861FBBA4A0009179EA /* Models */,
 				F99500BF1FBE964200848826 /* Views */,
+				F47C25A620009BDB007BBBFC /* Networking */,
 				F426037C1FBBA239009179EA /* SupportingFiles */,
 			);
 			path = ToDo;
@@ -141,6 +148,7 @@
 				F45733621FBD70A800161F62 /* Controllers */,
 				F426037F1FBBA382009179EA /* Models */,
 				F936C5011FC3E24E00887E9C /* Views */,
+				F47C25A320009B4C007BBBFC /* Networking */,
 				F42603651FBBA20B009179EA /* Info.plist */,
 			);
 			path = ToDoTests;
@@ -205,6 +213,25 @@
 				F45733631FBD721700161F62 /* ItemListViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F47C25A320009B4C007BBBFC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F47C25A020009544007BBBFC /* APIClientTests.swift */,
+			);
+			name = Networking;
+			path = Controllers/Networking;
+			sourceTree = "<group>";
+		};
+		F47C25A620009BDB007BBBFC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F47C25A420009BD5007BBBFC /* APIClient.swift */,
+				F47C25A72000A188007BBBFC /* Token.swift */,
+			);
+			name = Networking;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		F936C5011FC3E24E00887E9C /* Views */ = {
@@ -360,9 +387,11 @@
 				F48DC4271FD2743200C57BB7 /* InputViewController.swift in Sources */,
 				F457335C1FBCE2AB00161F62 /* ItemManager.swift in Sources */,
 				F45733671FBD786E00161F62 /* ItemListDataProvider.swift in Sources */,
+				F47C25A520009BD5007BBBFC /* APIClient.swift in Sources */,
 				F426034F1FBBA20B009179EA /* AppDelegate.swift in Sources */,
 				F42603881FBBAD2F009179EA /* Location.swift in Sources */,
 				F99500BE1FBE963C00848826 /* ItemCell.swift in Sources */,
+				F47C25A82000A188007BBBFC /* Token.swift in Sources */,
 				F42603851FBBA490009179EA /* ToDoItem.swift in Sources */,
 				F45733641FBD721700161F62 /* ItemListViewController.swift in Sources */,
 				F9D351311FCE3701004A194A /* DetailViewController.swift in Sources */,
@@ -379,6 +408,7 @@
 				F48DC4251FD2730B00C57BB7 /* InputViewControllerTests.swift in Sources */,
 				F426038A1FBBAF43009179EA /* LocationTests.swift in Sources */,
 				F9D3512F1FCE3631004A194A /* DetailViewControllerTests.swift in Sources */,
+				F47C25A120009544007BBBFC /* APIClientTests.swift in Sources */,
 				F426037E1FBBA374009179EA /* ToDoItemTests.swift in Sources */,
 				F45733611FBD70A100161F62 /* ItemListViewControllerTests.swift in Sources */,
 			);
