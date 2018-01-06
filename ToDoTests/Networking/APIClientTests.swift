@@ -22,6 +22,8 @@ class APIClientTests: XCTestCase {
         sut = APIClient()
         sutMockURLSession = MockURLSession()
         sut.session = sutMockURLSession
+        let completion = { (token: Token?, error: Error?) in }
+        sut.loginUser(withName: "dasdom", password: "1234", completion: completion)
     }
 
     override func tearDown() {
@@ -32,16 +34,10 @@ class APIClientTests: XCTestCase {
     }
 
     func testLoginUsesExpectedHost() {
-        let completion = { (token: Token?, error: Error?) in }
-        sut.loginUser(withName: "dasdom", password: "1234", completion: completion)
-
         XCTAssertEqual(sutMockURLSession.urlComponents?.host, "awsometodos.com")
     }
 
     func testLoginUsesExpectedPath() {
-        let completion = { (token: Token?, error: Error?) in }
-        sut.loginUser(withName: "dasdom", password: "1234", completion: completion)
-
         XCTAssertEqual(sutMockURLSession.urlComponents?.path, "/login")
     }
 }
