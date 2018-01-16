@@ -34,15 +34,35 @@ class APIClientTests: XCTestCase {
     }
 
     func testLoginUsesExpectedHost() {
-        XCTAssertEqual(sutMockURLSession.urlComponents?.host, "awsometodos.com")
+        XCTAssertEqual(sutMockURLSession.urlComponents?.host, "awsometodos.com", "An API Client shall have the correct host name for a URL login query.")
     }
 
     func testLoginUsesExpectedPath() {
-        XCTAssertEqual(sutMockURLSession.urlComponents?.path, "/login")
+        XCTAssertEqual(sutMockURLSession.urlComponents?.path, "/login", "An APIClient shall have the correct path for a URL login query.")
+    }
+
+    func testLoginContainsUserNameQuery() {
+        let usernameQuery = URLQueryItem(name: "username", value: "dasdöm")
+
+        if let queryItems = sutMockURLSession.urlComponents?.queryItems {
+            XCTAssertTrue(queryItems.contains(usernameQuery), "An APIClient shall encode the username for a URL login query.")
+        } else {
+            XCTFail("The APIClient did no contain any query items.")
+        }
+    }
+
+    func testLoginContainsPasswordQuery() {
+        let passwordQuery = URLQueryItem(name: "password", value: "%&34")
+
+        if let queryItems = sutMockURLSession.urlComponents?.queryItems {
+            XCTAssertTrue(queryItems.contains(passwordQuery), "An APIClient shall encode the password for a URL login query.")
+        } else {
+            XCTFail("The APIClient did no contain any query items.")
+        }
     }
 
     func testLoginUsesExpectedQuenry() {
-        XCTAssertEqual(sutMockURLSession.urlComponents?.percentEncodedQuery, "username=dasd%C3%B6m&password=%25%2634")
+        XCTAssertEqual(sutMockURLSession.urlComponents?.percentEncodedQuery, "username=dasd%C3%B6m&password=%25%2634", "An APIClient shall encode the username and password for a URL login query.")
     }
 }
 
