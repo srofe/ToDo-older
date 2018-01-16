@@ -73,7 +73,7 @@
 		F45733661FBD786E00161F62 /* ItemListDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProvider.swift; sourceTree = "<group>"; };
 		F45733681FBE349D00161F62 /* ItemListDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListDataProviderTests.swift; sourceTree = "<group>"; };
 		F47C25A020009544007BBBFC /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIClientTests.swift; path = ToDoTests/Networking/APIClientTests.swift; sourceTree = SOURCE_ROOT; };
-		F47C25A420009BD5007BBBFC /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = APIClient.swift; path = ../Networking/APIClient.swift; sourceTree = "<group>"; };
+		F47C25A420009BD5007BBBFC /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		F47C25A72000A188007BBBFC /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Token.swift; path = ToDo/Networking/Token.swift; sourceTree = SOURCE_ROOT; };
 		F48DC4241FD2730B00C57BB7 /* InputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewControllerTests.swift; sourceTree = "<group>"; };
 		F48DC4261FD2743200C57BB7 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
@@ -220,8 +220,7 @@
 			children = (
 				F47C25A020009544007BBBFC /* APIClientTests.swift */,
 			);
-			name = Networking;
-			path = Controllers/Networking;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		F47C25A620009BDB007BBBFC /* Networking */ = {
@@ -230,8 +229,7 @@
 				F47C25A420009BD5007BBBFC /* APIClient.swift */,
 				F47C25A72000A188007BBBFC /* Token.swift */,
 			);
-			name = Networking;
-			path = "New Group";
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		F936C5011FC3E24E00887E9C /* Views */ = {
