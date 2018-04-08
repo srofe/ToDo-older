@@ -66,18 +66,22 @@ class APIClientTests: XCTestCase {
     }
 }
 
-class MockURLSession: SessionProtocol {
+extension APIClientTests {
 
-    var url: URL?
+    class MockURLSession: SessionProtocol {
 
-    var urlComponents: URLComponents? {
-        guard let url = url else { return nil }
-        return URLComponents(url: url, resolvingAgainstBaseURL: true)
+        var url: URL?
+
+        var urlComponents: URLComponents? {
+            guard let url = url else { return nil }
+            return URLComponents(url: url, resolvingAgainstBaseURL: true)
+        }
+
+        func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+            self.url = url
+
+            return URLSession.shared.dataTask(with: url)
+        }
     }
 
-    func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        self.url = url
-
-        return URLSession.shared.dataTask(with: url)
-    }
 }
