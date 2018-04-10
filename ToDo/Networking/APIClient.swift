@@ -15,8 +15,17 @@ class APIClient {
         let query = "username=\(username.percentEncoded)&password=\(password.percentEncoded)"
         guard let url = URL(string: "https://awsometodos.com/login?\(query)") else { fatalError() }
         session.dataTask(with: url) { (data, response, error) in
-            
-        }
+            guard let data = data else { return }
+            let dict = try! JSONSerialization.jsonObject(with: data, options: []) as? [String:String]
+
+            var token: Token?
+            if let tokenString = dict?["token"] {
+                token = Token(id: tokenString)
+            } else {
+                token = nil
+            }
+            completion(token, nil)
+        }.resume()
     }
 }
 

@@ -64,6 +64,23 @@ class APIClientTests: XCTestCase {
     func testLoginUsesExpectedQuenry() {
         XCTAssertEqual(sutMockURLSession.urlComponents?.percentEncodedQuery, "username=dasd%C3%B6m&password=%25%2634", "An APIClient shall encode the username and password for a URL login query.")
     }
+
+    func testLoginWhenSuccessfulCreatesToken() {
+        let jsonData = "{\"token\":\"1234567890\"}".data(using: .utf8)
+        sutMockURLSession = MockURLSession(data: jsonData, urlResoonse: nil, error: nil)
+        sut.session = sutMockURLSession
+
+        let tokenExpectation = expectation(description: "Token")
+        var caughtToken: Token? = nil
+        sut.loginUser(withName: "Foo", password: "Bar") { (token, _) in
+            caughtToken = token
+            tokenExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1) { (_) in
+            XCTAssertEqual(caughtToken?.id, "1234567890")
+        }
+    }
 }
 
 extension APIClientTests {
