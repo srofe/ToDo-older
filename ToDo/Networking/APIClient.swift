@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum WebServiceError: Error {
+    case DataEmptyError
+}
+
 class APIClient {
     lazy var session: SessionProtocol = URLSession.shared
 
@@ -15,7 +19,10 @@ class APIClient {
         let query = "username=\(username.percentEncoded)&password=\(password.percentEncoded)"
         guard let url = URL(string: "https://awsometodos.com/login?\(query)") else { fatalError() }
         session.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
+            guard let data = data else {
+                completion(nil, WebServiceError.DataEmptyError)
+                return
+            }
             do {
                 let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String:String]
 

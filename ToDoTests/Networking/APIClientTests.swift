@@ -97,6 +97,22 @@ class APIClientTests: XCTestCase {
             XCTAssertNotNil(catchedError, "AN APIClient shall raise an exception when the JSON is invalid.")
         }
     }
+
+    func testLoginWhenDataIsNilReturnsError() {
+        sutMockURLSession = MockURLSession(data: nil, urlResoonse: nil, error: nil)
+        sut.session = sutMockURLSession
+
+        let errorExpectation = expectation(description: "Error")
+        var catchedError: Error? = nil
+        sut.loginUser(withName: "Foo", password: "Bar") { (token, error) in
+            catchedError = error
+            errorExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1) { (error) in
+            XCTAssertNotNil(catchedError, "AN APIClient shall raise an exception when the data is nil.")
+        }
+    }
 }
 
 extension APIClientTests {
