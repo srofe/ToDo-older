@@ -78,7 +78,23 @@ class APIClientTests: XCTestCase {
         }
 
         waitForExpectations(timeout: 1) { (_) in
-            XCTAssertEqual(caughtToken?.id, "1234567890")
+            XCTAssertEqual(caughtToken?.id, "1234567890", "An APIClient shall return a token for a valid login.")
+        }
+    }
+
+    func testLoginWhenJSONIsInvalidReturnsError() {
+        sutMockURLSession = MockURLSession(data: Data(), urlResoonse: nil, error: nil)
+        sut.session = sutMockURLSession
+
+        let errorExpectation = expectation(description: "Error")
+        var catchedError: Error? = nil
+        sut.loginUser(withName: "Foo", password: "Bar") { (token, error) in
+            catchedError = error
+            errorExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1) { (error) in
+            XCTAssertNotNil(catchedError, "AN APIClient shall raise an exception when the JSON is invalid.")
         }
     }
 }
