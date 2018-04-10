@@ -113,6 +113,24 @@ class APIClientTests: XCTestCase {
             XCTAssertNotNil(catchedError, "AN APIClient shall raise an exception when the data is nil.")
         }
     }
+
+    func testLoginWhenResponseHaszerrorReturnsError() {
+        let error = NSError(domain: "SomeError", code: 1234, userInfo: nil)
+        let jsonData = "{\"token\":\"1234567890\"}".data(using: .utf8)
+        sutMockURLSession = MockURLSession(data: jsonData, urlResoonse: nil, error: error)
+        sut.session = sutMockURLSession
+
+        let errorExpectation = expectation(description: "Error")
+        var catchedError: Error? = nil
+        sut.loginUser(withName: "Foo", password: "Bar") { (token, error) in
+            catchedError = error
+            errorExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1) { (error) in
+            XCTAssertNotNil(catchedError, "An APIClient shall raise an exception when the response has an error.")
+        }
+    }
 }
 
 extension APIClientTests {

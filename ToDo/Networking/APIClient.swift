@@ -10,6 +10,7 @@ import Foundation
 
 enum WebServiceError: Error {
     case DataEmptyError
+    case ResponseError
 }
 
 class APIClient {
@@ -19,6 +20,9 @@ class APIClient {
         let query = "username=\(username.percentEncoded)&password=\(password.percentEncoded)"
         guard let url = URL(string: "https://awsometodos.com/login?\(query)") else { fatalError() }
         session.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                return completion(nil, error)
+            }
             guard let data = data else {
                 completion(nil, WebServiceError.DataEmptyError)
                 return
