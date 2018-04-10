@@ -139,6 +139,36 @@ class InputViewControllerTests: XCTestCase {
         let testItem = ToDoItem(title: "Go Home from Work", description: "It is time to go home, so go!", timestamp: timestamp, location: Location(name: "Work", coordinate: coordinate))
         XCTAssertEqual(testItem, item, "An ItemListController shall set the location of the item when saveItem() is called.")
     }
+
+    func testGeocoderFetchesCoordinateLatitude() {
+        let geocoderAnswered = expectation(description: "Geocoder")
+        let address = "Infinte Loop 1, Cupertino"
+        CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
+            let coordinate = placemarks?.first?.location?.coordinate
+            guard let latitude = coordinate?.latitude else {
+                XCTFail("The address latitude shall be fetched from the Geocoder.")
+                return
+            }
+            XCTAssertEqual(latitude, 37.3316, accuracy: 0.001, "The address coordinate latitude shall be within 0.001 degrees.")
+            geocoderAnswered.fulfill()
+        }
+        waitForExpectations(timeout: 3, handler: nil)
+    }
+
+    func testGeocoderFetchesCoordinateLongitude() {
+        let geocoderAnswered = expectation(description: "Geocoder")
+        let address = "Infinte Loop 1, Cupertino"
+        CLGeocoder().geocodeAddressString(address) { (placemarks, error) in
+            let coordinate = placemarks?.first?.location?.coordinate
+            guard let longitude = coordinate?.longitude else {
+                XCTFail("The address longitude shall be fetched from the Geocoder.")
+                return
+            }
+            XCTAssertEqual(longitude, -122.0300, accuracy: 0.001, "The address coordinate longitude shall be within 0.001 degrees.")
+            geocoderAnswered.fulfill()
+        }
+        waitForExpectations(timeout: 3, handler: nil)
+    }
 }
 
 extension InputViewControllerTests {
